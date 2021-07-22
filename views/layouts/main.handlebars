@@ -7,6 +7,33 @@
     <link rel="stylesheet" href="../../public/styles/style.css" />
     <title>Socially Fit</title>
 </head>
+
+<header>
+    <div>
+        <h1><a class="nav-logo" href="/">Socially Fit</a></h1>
+    </div>
+
+    <nav>
+        {{#if loggedIn}}
+        <div class="nav-menu">
+            <ul class="nav-list">
+                <li class="nav-item"><a class="nav-link" href="/exercises">View Exercises</a></li>
+                <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="/homepage">Logout</a></li>
+            </ul>
+        </div>
+    {{else}}
+        <div class="nav-menu">
+            <ul class="nav-list">
+                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="/exercises">View Exercises</a></li>
+            </ul>
+        </div>
+        {{/if}}
+    </nav>
+
+</header>
+
 <body>
 
     <h1>This is a test</h1>
