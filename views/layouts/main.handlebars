@@ -5,38 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/styles/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <title>Socially Fit</title>
 </head>
 
 <header>
-    <div>
-        <h1><a class="nav-logo" href="/">Socially Fit</a></h1>
-    </div>
 
     <nav>
+        <div>
+            <h1><a class="nav-logo" href="/">Socially Fit</a></h1>
+        </div>
         {{#if loggedIn}}
-        <div class="nav-menu">
+        <div class="nav-menu" id="nav-menu">
             <ul class="nav-list">
                 <li class="nav-item"><a class="nav-link" href="/exercises">View Exercises</a></li>
                 <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="/homepage">Logout</a></li>
             </ul>
         </div>
-    {{else}}
-        <div class="nav-menu">
+        {{else}}
+        <div class="nav-menu" id="nav-menu">
             <ul class="nav-list">
                 <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                 <li class="nav-item"><a class="nav-link" href="/exercises">View Exercises</a></li>
             </ul>
         </div>
         {{/if}}
+        <div class="nav-toggle" id="nav-toggle">
+            <i class="material-icons">menu</i>
+        </div>
     </nav>
 
 </header>
 
 <body>
 
-    <h1>This is a test</h1>
     {{{ body }}}
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="../public/javascript/homepage.js"></script>
+
 </body>
 </html>
