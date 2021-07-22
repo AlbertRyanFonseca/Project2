@@ -9,18 +9,27 @@
 </head>
 
 <header>
-    <h1><a href="/">Socially Fit</a></h1>
+    <div>
+        <h1><a class="nav-logo" href="/">Socially Fit</a></h1>
+    </div>
 
-    {{#if loggedIn}}
     <nav>
-        <a href="/exercises">View Exercises</a>
-        <a href="/profile">Profile</a>
-        <a href="/homepage">Logout</a>
-    </nav>
+        {{#if loggedIn}}
+        <div class="nav-menu">
+            <ul class="nav-list">
+                <li class="nav-item"><a class="nav-link" href="/exercises">View Exercises</a></li>
+                <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="/homepage">Logout</a></li>
+            </ul>
+        </div>
     {{else}}
-    <nav>
-        <a href="/login">Login</a>
-        <a href="/exercises">View Exercises</a>
+        <div class="nav-menu">
+            <ul class="nav-list">
+                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="/exercises">View Exercises</a></li>
+            </ul>
+        </div>
+        {{/if}}
     </nav>
 
 </header>
