@@ -28,8 +28,22 @@ Post.init (
             type: DataTypes.STRING,
 
         },
-        difficulty:{},
-        type: {},
+        difficulty_id:{
+            type: DataTypes.INTEGER,
+            allowNull:false,
+            references: {
+                model: 'difficulty',
+                key: 'id'
+            }
+        },
+        type_id: {
+            type:DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'type',
+                key: 'id'
+            }
+        },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,

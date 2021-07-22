@@ -4,6 +4,8 @@ const PostTags = require('./PostTags');
 const Tags = require('./Tags');
 const Votes = require('./Votes');
 const Comment = require('./Comment');
+const Difficulty = require('./Difficulty');
+const Type = require('./Type');
 
 // create assosciations
 User.hasMany(Votes, {
@@ -28,6 +30,14 @@ Post.hasOne(PostTags, {
 
 Post.hasMany(Comment, {
     foreignKey: 'comment_id'
+});
+
+Post.hasOne(Difficulty, {
+    foreignKey: 'difficulty_id'
+});
+
+Post.hasOne(Type, {
+    foreignKey: 'type_id'
 })
 
 Votes.hasOne(Post);
@@ -53,14 +63,10 @@ Comment.hasOne(Post, {
     foreignKey: 'post_id'
 });
 
+Difficulty.hasMany(Post);
+
+Type.hasMany(Post);
 
 
 
-
-
-
-
-
-
-
-module.exports = {User, Post, PostTags, Tags, Votes, Comment};
+module.exports = {User, Post, PostTags, Tags, Votes, Comment, Difficulty, Type};
