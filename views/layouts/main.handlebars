@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="../../public/styles/style.css" />
     <title>Socially Fit</title>
 </head>
+
+<header>
+    <h1><a href="/">Socially Fit</a></h1>
+
+    {{#if loggedIn}}
+    <nav>
+        <a href="/exercises">View Exercises</a>
+        <a href="/profile">Profile</a>
+        <a href="/homepage">Logout</a>
+    </nav>
+    {{else}}
+    <nav>
+        <a href="/login">Login</a>
+        <a href="/exercises">View Exercises</a>
+    </nav>
+
+</header>
+
 <body>
 
     <h1>This is a test</h1>
