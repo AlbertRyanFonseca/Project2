@@ -5,17 +5,16 @@ const sequelize = require('../../config/connection');
 
 router.get('/', (req, res) => {
     Comment.findAll()
-    .then(dbComData => {
-        res.status(200).json(dbComData)
-    }).catch(err => (
+    .then(dbComData => res.status(200).json(dbComData))
+    .catch(err => {
         res.status(500).json(err)
-    ));
+    });
 });
 
 router.post('/', (req, res) => {
     Comment.create({
-        title: req.body.title,
-        body: req.body.body,
+        comment_text: req.body.comment_text,
+        post_id: req.body.post_id,
         user_id: req.body.user_id
     }).then(dbComData => {
         res.status(200).json({message: "Successfully Created"}, dbComData)
