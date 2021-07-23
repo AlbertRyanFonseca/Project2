@@ -28,8 +28,8 @@ Post.init (
             type: DataTypes.STRING,
 
         },
-        difficulty:{},
-        type: {},
+        // difficulty:{},
+        // type: {},
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
