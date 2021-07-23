@@ -59,9 +59,9 @@ Comment.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-// Comment.belongsTo(Post, {
-//     foreignKey: 'comment_id'
-// });
+Comment.belongsTo(Post, {
+    foreignKey: 'comment_id'
+});
 
 
 
