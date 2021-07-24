@@ -66,6 +66,9 @@ router.post("/", (req, res) => {
 
             res.json(dbUserData);
         });
+    }).catch((err) => {
+        res.status(500).json(err);
+        return
     });
 });
 

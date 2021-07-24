@@ -18,7 +18,7 @@ async function registerUser(e)  {
             headers: { "Content-Type": "application/json"}
         })
         if (response.ok) {
-            alert("User Created");
+            document.location.replace('/');
         } else {
             alert(response.statusText);
         }

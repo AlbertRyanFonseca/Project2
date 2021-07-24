@@ -17,7 +17,7 @@ async function loginUser(e) {
 
         });
         if (response.ok) {
-            alert("Logged in!")
+            document.location.replace('/exercises')
         } else {
             alert(response.statusText)
         }
