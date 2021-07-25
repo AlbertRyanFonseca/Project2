@@ -35,6 +35,12 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
       });
   });
-
+router.post("/", isSignedIn, (req, res) => {
+  Post.create({
+    title: req.body.title,
+    description: req.body.description,
+    img_url: req.body.img_url
+  })
+})
   module.exports = router;
   
