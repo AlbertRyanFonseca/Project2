@@ -13,17 +13,17 @@ PostTags.init(
         },
         tag_id: {
             type: DataTypes.INTEGER,
-            references: {
-                model: 'tags',
-                key: 'id'
-            }
+            // references: {
+            //     model: 'tags',
+            //     key: 'id'
+            // }
         },
         post_id: {
             type: DataTypes.INTEGER,
-            references: {
-                model: 'post',
-                key: 'id'
-            }
+            // references: {
+            //     model: 'post',
+            //     key: 'id'
+            // }
         }
     },
     {

@@ -24,17 +24,34 @@ Post.init (
                 len: [1]
             }
         },
-        img_url: {
-            type: DataTypes.STRING,
+        img_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'picture',
+                key: 'id'
+            }
 
         },
-        // difficulty:{},
-        // type: {},
         user_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
             references: {
             model: 'user',
+            key: 'id'
+        }
+    },
+    type_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'type',
+            key: 'id'
+        }
+    },
+    difficulty_id:{
+        type:DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'difficulty',
             key: 'id'
         }
     },
@@ -42,16 +59,18 @@ Post.init (
         type: DataTypes.INTEGER,
         references: {
             model: 'tags',
-            key: 'id'
+            key:'id'
         }
+       
     },
-    // comment_id: {
-    //     type: DataTypes.INTEGER,
-    //     references: {
-    //         model: 'comment',
-    //         key: 'id'
-    //     }
-    // }
+    comment_id: {
+        type: DataTypes.INTEGER,
+        // references: {
+        //     model: 'comment',
+        //     key: 'id'
+        // }
+       
+    }
     },
     {
         sequelize,

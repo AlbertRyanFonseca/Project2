@@ -1,26 +1,28 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Picture extends Model {}
+class Difficulty extends Model {}
 
-Picture.init( 
+Difficulty.init(
     {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        image_url: {
-            type:DataTypes.STRING,
+        difficulty: {
+            type: DataTypes.STRING,
             allowNull: false,
+
         }
     },
     {
         sequelize,
         freezeTableName: true,
+        timestamps: false,
         underscored: true,
-        modelName: 'picture'
+        modelName: 'difficulty'
     }
 )
 
-module.exports = Picture;
+module.exports = Difficulty;

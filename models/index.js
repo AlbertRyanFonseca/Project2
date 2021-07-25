@@ -4,65 +4,132 @@ const PostTags = require('./PostTags');
 const Tags = require('./Tags');
 const Votes = require('./Votes');
 const Comment = require('./Comment');
+const Picture = require('./Picture');
+const Difficulty = require('./Difficulty');
+const Type = require('./Type');
 
 // create assosciations
-User.hasMany(Votes, {
-    foreignKey: 'user_id'
-});
-
+// upvote associations start 
+// user/post association start
 User.hasMany(Post, {
     foreignKey: 'user_id'
 });
 
-
-User.hasMany(Comment, {
-    foreignKey: 'user_id'
-});
-
-// possibly has one?
 Post.belongsTo(User, {
     foreignKey: 'user_id'
 });
+// user/post association end
 
-
-
-Post.hasMany(Votes, {
+Post.belongsToMany(User, {
+    through: Votes,
+    as: 'upvotes',
     foreignKey: 'post_id'
+    // foreignKey: 'post_id'
 });
 
-Post.belongsToMany(Tags, {
-    through: PostTags,
-    foreignKey: 'post_id'
+User.belongsToMany(Post, {
+    through: Votes,
+    as: 'upvotes',
+    foreignKey:'user_id'
 });
 
-
-Post.hasMany(Comment, {
-    foreignKey: 'post_id'
-})
-
-Votes.belongsTo(Post, {
-    foreignKey:'post_id'
+User.hasMany(Votes, {
+    foreignKey: 'user_id'
 });
 
 Votes.belongsTo(User, {
     foreignKey: 'vote_id'
 });
 
-Tags.belongsToMany(Post, {
-    through: PostTags,
-    foreignKey: 'tag_id'
+Post.hasMany(Votes, {
+    foreignKey: 'post_id'
 });
 
+Votes.belongsTo(Post, {
+    foreignKey: 'post_id'
+});
+// upvote associations end
 
+
+
+// user/comment association start
+User.hasMany(Comment, {
+    foreignKey: 'user_id'
+});
 
 Comment.belongsTo(User, {
     foreignKey: 'user_id'
 });
+// user/comment association end
 
-Comment.belongsTo(Post, {
-    foreignKey: 'comment_id'
+// post/comment association start
+Post.hasMany(Comment, {
+    foreignKey: 'post_id'
 });
 
+Comment.belongsTo(Post, {
+    foreignKey: 'post_id'
+});
+// post/comment association end
 
 
-module.exports = {User, Post, PostTags, Tags, Votes, Comment};
+// post to tags association start 
+// PostTags.hasMany(Tags, {
+//     foreignKey: 'tag_id'
+// });
+
+// Tags.belongsTo(PostTags, {
+//     foreignKey: 'tag_id'
+// });
+
+Post.belongsToMany(Tags, {
+    through: PostTags,
+    as:'tags',
+    foreignKey: 'post_id'
+});
+
+Tags.belongsToMany(Post, {
+    through: PostTags,
+    as:'tags',
+    foreignKey: 'tag_id'
+});
+
+// PostTags.hasMany(Post, {
+//     foreignKey:'post_id',
+// });
+
+// Post.belongsTo(PostTags, {
+//     foreignKey: 'post_id'
+// });
+// post to tags association end
+
+// img/post association start 
+Picture.hasMany(Post, {
+    foreignKey: 'img_id'
+});
+
+Post.belongsTo(Picture, {
+    foreignKey: 'img_id'
+});
+// img/post association end
+
+// post/difficulty association start
+Difficulty.hasMany(Post, {
+    foreignKey: 'difficulty_id'
+});
+
+Post.belongsTo(Difficulty, {
+    foreignKey: 'difficulty_id'
+});
+// post/difficulty association end
+
+// post/type association start
+Type.hasMany(Post, {
+    foreignKey: 'type_id',
+});
+
+Post.belongsTo(Type, {
+    foreignKey: 'type_id'
+});
+
+module.exports = {User, Post, PostTags, Tags, Votes, Comment, Picture, Difficulty, Type};
