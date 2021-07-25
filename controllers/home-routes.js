@@ -30,12 +30,12 @@ router.get("/exercises", (req, res) => {
             "title",
             "description",
             "created_at",
-            // [
-            //     sequelize.literal(
-            //         "SELECT COUNT(*) FROM votes WHERE post.id = vote.post_id"
-            //     ),
-            //     "vote_count",
-            // ],
+            [
+                sequelize.literal(
+                    "(SELECT COUNT(*) FROM votes WHERE post.id = votes.post_id)"
+                ),
+                "vote_count",
+            ],
         ],
         include: [
             {
@@ -46,6 +46,12 @@ router.get("/exercises", (req, res) => {
                     "user_id",
                     "post_id",
                     "created_at",
+                    [
+                        sequelize.literal(
+                            "(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+                        ),
+                        "comment_count",
+                    ],
                 ],
                 include: {
                     model: User,
@@ -63,8 +69,13 @@ router.get("/exercises", (req, res) => {
         ],
     })
         .then((dbPostData) => {
-            const posts = dbPostData.map((post) => post.get({ plain: true }));
-            res.render("exercises", { posts });
+            const posts = dbPostData.map(post => {
+                post.dataValues.loggedIn = req.session.loggedIn;
+                return post.get({ plain: true })
+            });
+            res.render("exercises", { 
+                posts, 
+            });
         })
         .catch((err) => {
             console.log(err);

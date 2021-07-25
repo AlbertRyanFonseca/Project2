@@ -8,10 +8,10 @@ async function loginUser(e) {
 
     if (email && password) {
         const response = await fetch("/api/users/login", {
-            method: "POST",
+            method: "post",
             body: JSON.stringify({
-                email: email,
-                password: password
+                email,
+                password
             }),
             headers: {"Content-Type": "application/json"}
 
