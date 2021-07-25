@@ -85,6 +85,10 @@ img {
 .show {
   right: 0;
 }
-#chat-bubble {
+#chat-bubble, #thumbs-up {
   max-height: 20px;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  vertical-align: center;
 }
