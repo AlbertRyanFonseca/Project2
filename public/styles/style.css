@@ -85,3 +85,6 @@ img {
 .show {
   right: 0;
 }
+#chat-bubble {
+  max-height: 20px;
+}

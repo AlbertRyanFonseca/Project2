@@ -5,6 +5,7 @@ const seedType = require("./type-seeds");
 const seedPicture = require("./picture-seeds");
 const seedPosts = require("./post-seeds");
 const seedVotes = require("./vote-seeds");
+const seedComment = require("./comment-seeds")
 
 const sequelize = require("../config/connection");
 
@@ -22,6 +23,8 @@ const seedAll = async () => {
     await seedPicture();
     console.log("=============");
     await seedPosts();
+    console.log("=============");
+    await seedComment();
     console.log("=============");
     await seedVotes();
     console.log("=============");

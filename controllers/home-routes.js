@@ -46,6 +46,12 @@ router.get("/exercises", (req, res) => {
                     "user_id",
                     "post_id",
                     "created_at",
+                    [
+                        sequelize.literal(
+                            "(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+                        ),
+                        "comment_count",
+                    ],
                 ],
                 include: {
                     model: User,
@@ -65,7 +71,6 @@ router.get("/exercises", (req, res) => {
         .then((dbPostData) => {
             const posts = dbPostData.map(post => {
                 post.dataValues.loggedIn = req.session.loggedIn;
-                console.log(post)
                 return post.get({ plain: true })
             });
             res.render("exercises", { 
