@@ -37,7 +37,7 @@ app.use(routes);
 // Turn off sequelize for the moment to get it up and running, once models are done, activate
 
 
-sequelize.sync({ force: true}).then(() => {
+sequelize.sync({ force: false}).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
 
