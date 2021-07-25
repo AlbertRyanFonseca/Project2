@@ -4,20 +4,19 @@ async function loginUser(e) {
     const email = $("#email-login").val().trim();
     const password = $("#password-login").val().trim();
 
-    console.log(email, password)
-
     if (email && password) {
         const response = await fetch("/api/users/login", {
-            method: "POST",
+            method: "post",
             body: JSON.stringify({
-                email: email,
-                password: password
+                email,
+                password
             }),
             headers: {"Content-Type": "application/json"}
 
         });
         if (response.ok) {
-            document.location.replace('/exercises')
+            console.log(response)
+            // document.location.replace('/exercises')
         } else {
             alert(response.statusText)
         }

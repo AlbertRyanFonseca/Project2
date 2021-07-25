@@ -30,12 +30,12 @@ router.get("/exercises", (req, res) => {
             "title",
             "description",
             "created_at",
-            // [
-            //     sequelize.literal(
-            //         "SELECT COUNT(*) FROM votes WHERE post.id = vote.post_id"
-            //     ),
-            //     "vote_count",
-            // ],
+            [
+                sequelize.literal(
+                    "(SELECT COUNT(*) FROM votes WHERE post.id = votes.post_id)"
+                ),
+                "vote_count",
+            ],
         ],
         include: [
             {
@@ -64,7 +64,7 @@ router.get("/exercises", (req, res) => {
     })
         .then((dbPostData) => {
             const posts = dbPostData.map((post) => post.get({ plain: true }));
-            res.render("exercises", { posts });
+            res.render("exercises", { posts, loggedIn: true});
         })
         .catch((err) => {
             console.log(err);

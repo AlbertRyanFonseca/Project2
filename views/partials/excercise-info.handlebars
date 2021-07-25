@@ -1,8 +1,18 @@
 <div class="card" style="width: 18rem;">
-          <img src="{{picture.image_url}}" class="card-img-top" alt={{img_url}}>
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{description}}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>  
+    <img src="{{picture.image_url}}" class="card-img-top" alt={{img_url}} />
+    <div class="card-body">
+        <h5 class="card-title">{{title}}</h5>
+        <p class="card-text">{{description}}</p>
+        {{#if loggedIn}}
+            <button type="button" class="btn btn-primary position-relative">
+                UpVote
+                <span
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                >
+                    {{vote_count}}
+                    {{! <span class="visually-hidden">unread messages</span> }}
+                </span>
+            </button>
+        {{/if}}
+    </div>
+</div>
