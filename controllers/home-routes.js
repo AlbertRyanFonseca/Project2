@@ -63,8 +63,14 @@ router.get("/exercises", (req, res) => {
         ],
     })
         .then((dbPostData) => {
-            const posts = dbPostData.map((post) => post.get({ plain: true }));
-            res.render("exercises", { posts, loggedIn: true});
+            const posts = dbPostData.map(post => {
+                post.dataValues.loggedIn = req.session.loggedIn;
+                console.log(post)
+                return post.get({ plain: true })
+            });
+            res.render("exercises", { 
+                posts, 
+            });
         })
         .catch((err) => {
             console.log(err);

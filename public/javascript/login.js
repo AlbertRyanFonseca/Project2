@@ -4,6 +4,8 @@ async function loginUser(e) {
     const email = $("#email-login").val().trim();
     const password = $("#password-login").val().trim();
 
+    console.log(email, password)
+
     if (email && password) {
         const response = await fetch("/api/users/login", {
             method: "post",
@@ -15,8 +17,7 @@ async function loginUser(e) {
 
         });
         if (response.ok) {
-            console.log(response)
-            // document.location.replace('/exercises')
+            document.location.replace('/exercises')
         } else {
             alert(response.statusText)
         }
