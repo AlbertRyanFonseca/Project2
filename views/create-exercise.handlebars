@@ -1,0 +1,31 @@
+<section>
+    <h2>Create a new exercise!</h2>
+    <form class = "select">
+        <label for="type-exercise">Choose the type of exercise:</label>
+        <select name="type-exercise" id="exerciseType">
+            {{#each type}}
+            <option value="{{type.type}}"></option>
+            {{/each}}
+        </select>
+        <label for="difficulty">Choose exercise difficulty:</label>
+        <select name="difficulty" id="exerciseDifficulty">
+            {{#each difficulty}}
+            <option value="{{difficutly.difficulty}}"></option>
+        </select>
+        <label for="picture">Choose picture relating to exercise:</label>
+        <select name="picture" id="exercisePicture">
+            <option value="{{picture.img_url}}"></option>
+        </select>
+    </form>
+
+    <form class = 'new-exercise'>
+        <div>
+            <label for="exercise-title">Exercise:</label>
+            <input type="text" id="exercise-title" name="exercise-title">
+        </div>
+        <div>
+            <label for="exercise-description">Description</label>
+            <textarea name="exercise-description" id="description" ></textarea>
+        </div>
+    </form>
+</section>
