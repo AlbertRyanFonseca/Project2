@@ -84,13 +84,13 @@ Comment.belongsTo(Post, {
 
 Post.belongsToMany(Tags, {
     through: PostTags,
-    as:'tags',
+    // as:'tags',
     foreignKey: 'post_id'
 });
 
 Tags.belongsToMany(Post, {
     through: PostTags,
-    as:'tags',
+    // as:'tags',
     foreignKey: 'tag_id'
 });
 
