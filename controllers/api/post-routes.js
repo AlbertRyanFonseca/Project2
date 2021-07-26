@@ -8,15 +8,16 @@ const isSignedIn = require("../../utils/userAuth");
 router.get("/", (req, res) => {
     Post.findAll({
         attributes: [
+            "id",
             "title",
             "description",
             "created_at",
-            // [
-            //     sequelize.literal(
-            //         "(SELECT COUNT(*) FROM vote WHERE post.id = votes.post_id)"
-            //     ),
-            //     "vote_count",
-            // ],
+            [
+                sequelize.literal(
+                    "(SELECT COUNT(*) FROM votes WHERE post.id = votes.post_id)"
+                ),
+                "vote_count",
+            ],
         ],
         order: [["created_at", "DESC"]],
         include: [
@@ -65,7 +66,7 @@ router.post("/", (req, res) => {
             if (req.body.tagIds.length) {
                 const postTagIdArr = req.body.tagIds.map((tag_id) => {
                     return {
-                        post_id: post.id,
+                        post_id: dbPostData.id,
                         tag_id,
                     };
                 });
