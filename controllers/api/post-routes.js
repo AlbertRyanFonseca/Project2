@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../../config/connection");
-const { Post, User, Comment, Votes, PostTags, Tags } = require("../../models");
+const { Post, User, Comment, Votes, PostTags, Tags, Type, Difficulty, Picture } = require("../../models");
 const isSignedIn = require("../../utils/userAuth");
 
 // get all posts
@@ -139,5 +139,8 @@ router.delete("/:id", isSignedIn, (req, res) => {
             console.log(err);
         });
 });
+
+
+
 
 module.exports = router;
