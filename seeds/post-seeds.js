@@ -15,7 +15,7 @@ const postData = [
         title: "Crossfit workout for Beginners",
         description: "Get fit with Crossfit",
         img_id: 1,
-        user_id: 1,
+        user_id: 3,
         type_id: 2,
         difficulty_id: 3,
         tagIds: [1],
