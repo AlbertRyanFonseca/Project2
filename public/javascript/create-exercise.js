@@ -1,4 +1,4 @@
-let tags_id = [];
+let tagIds = [];
 let type_id;
 let tempArr; 
 async function newExerciseHandler(event) {
@@ -18,7 +18,7 @@ async function newExerciseHandler(event) {
     const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({
-            tags_id,
+            tagIds,
             difficulty_id,
             type_id,
             title,
@@ -41,20 +41,22 @@ async function newExerciseHandler(event) {
 
 $('input:checkbox').click(function() {
     if($(this).prop('checked')) {
-        tags_id.push($(this).attr('id'));
-        console.log(tags_id);
+        tagIds.push($(this).attr('id'));
+        // console.log(tags_id);
     
     } else if ($(this).prop('checked', false)) {
         tempArr = [];
-        tempArr = tags_id.filter((tag) => {
+        tempArr = tagIds.filter((tag) => {
             return $(this).attr('id') != tag 
         })
-        tags_id = tempArr;
+        tagIds = tempArr;
         
+        console.log(tagIds);
         console.log(tempArr);
         // console.log(tags_id);
     }
 });
+
 
 
 

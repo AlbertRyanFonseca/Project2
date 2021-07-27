@@ -74,7 +74,7 @@ router.post("/", isSignedIn, (req, res) => {
     Post.create({
         title: req.body.title,
         description:req.body.description,
-        tags_id: req.body.tags_id,
+        tagIds: req.body.tagIds,
         difficulty_id: req.body.difficulty_id,
         type_id: req.body.type_id, 
         user_id: req.session.user_id
