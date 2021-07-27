@@ -127,11 +127,28 @@ router.get('/type', (req,res) => {
 
 
 router.get('/create',  (req,res) => {
+    Picture.findAll({
+        attributes: ['image_url']
+    })
+        .then((dbPostData) => {
+            const posts = dbPostData.map(post => {
+                post.dataValues.loggedIn = req.session.loggedIn;
+                return post.get({ plain: true })
+            });
+            res.render("create-exercise", { 
+                posts, 
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
    
-    res.render('create-exercise')
+   
     
 
-});
+
 
 
 

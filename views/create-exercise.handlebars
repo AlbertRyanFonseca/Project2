@@ -44,13 +44,20 @@
             <label for="exercise-description">Description:</label>
             <textarea name="exercise-description" id="description" ></textarea>
         </div>
-        <button type="select" class = "btn"> Select Picture </button>
-        <button type="submit" class="btn">Create</button>
+        <button type="button" class="btn" id="createBtn">Create</button>
 
     </form>
+        <button type="button" class ="btn" id="imgSelectBtn"> Select Picture </button>
 </section>
 
 <section id= "imageSelect" class="display-none">
+    <div class="container">
+        <div class="row">
+            {{#each posts as |post|}}
+            {{> image-view post}}
+            {{/each}}
+        </div>
+    </div>
 
 </section>
 

@@ -56,8 +56,10 @@ $('input:checkbox').click(function() {
         // console.log(tags_id);
     }
 });
+$('#imgSelectBtn').on('click', function() {
+    $('#imageSelect').removeClass('display-none').addClass('display-inherit');
+})
+$("#createBtn").on('click', newExerciseHandler);
 
 
 
-
-document.querySelector(".new-exercise-form").addEventListener('submit', newExerciseHandler);

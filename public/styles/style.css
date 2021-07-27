@@ -193,6 +193,9 @@ form {
   padding: 0;
   vertical-align: center;
 }
+.img-container {
+  width: 50%
+}
 
 @media screen and (min-width: 576px) {
   nav {
