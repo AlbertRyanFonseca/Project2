@@ -48,9 +48,6 @@ $("input:checkbox").click(function () {
             return $(this).attr("id") != tag;
         });
         tagIds = tempArr;
-
-        console.log(tagIds);
-        console.log(tempArr);
         // console.log(tags_id);
     }
 });

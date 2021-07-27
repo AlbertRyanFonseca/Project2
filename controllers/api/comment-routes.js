@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
     Comment.create({
         comment_text: req.body.comment_text,
         post_id: req.body.post_id,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     }).then(dbComData => {
         res.status(200).json({message: "Successfully Created"}, dbComData)
     }).catch(err => {
@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
     Comment.destroy({
         where: {
-            id: red.params.id
+            id: req.params.id
         }
     }).then(dbComData => {
         if (!dbComData) {
