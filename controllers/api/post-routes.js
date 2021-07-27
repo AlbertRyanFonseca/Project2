@@ -1,6 +1,15 @@
 const router = require("express").Router();
 const sequelize = require("../../config/connection");
-const { Post, User, Comment, Votes, PostTags, Tags, Type, Difficulty, Picture } = require("../../models");
+const {
+    Post,
+    User,
+    Comment,
+    Votes,
+    PostTags,
+    Tags,
+    Difficulty,
+    Type,
+} = require("../../models");
 const isSignedIn = require("../../utils/userAuth");
 
 // get all posts
@@ -40,6 +49,8 @@ router.get("/", (req, res) => {
                 attributes: ["username"],
             },
             { model: Tags, attributes: ["title"] },
+            { model: Difficulty, attributes: ["difficulty"] },
+            { model: Type, attributes: ["type"] },
         ],
     })
         .then((dbPostData) => {
