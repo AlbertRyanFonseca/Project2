@@ -175,8 +175,15 @@ form {
 
 .form-signin {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
+
+.form-signup {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* Modal Cards */
 
 #chat-bubble,
 #thumbs-up {
