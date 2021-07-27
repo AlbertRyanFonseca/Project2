@@ -62,7 +62,7 @@ router.get("/", (req, res) => {
             res.status(500).json(err);
         });
 });
-router.post("/", (req, res) => {
+router.post("/", isSignedIn, (req, res) => {
     // expects
     //       "title": "This is a test Title"
     //       "description": "This is a test Description",
@@ -71,7 +71,14 @@ router.post("/", (req, res) => {
     //       "type_id": 2,
     //       "difficulty_id": 2,
     //       "tagIds": [1,3,2],
-    Post.create(req.body)
+    Post.create({
+        title: req.body.title,
+        description:req.body.description,
+        tagIds: req.body.tagIds,
+        difficulty_id: req.body.difficulty_id,
+        type_id: req.body.type_id, 
+        user_id: req.session.user_id
+        })
         .then((dbPostData) => {
             // make the tag pairings in the PostTag model
             if (req.body.tagIds.length) {
@@ -151,5 +158,8 @@ router.delete("/:id", isSignedIn, (req, res) => {
             console.log(err);
         });
 });
+
+
+
 
 module.exports = router;

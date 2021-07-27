@@ -1,6 +1,8 @@
 const router = require("express").Router();
-const { Post, User, Comment, Picture } = require("../models");
+const { Post, User, Comment, Picture,Type, Tags,Difficulty} = require("../models");
 const sequelize = require("../config/connection");
+const isSignedIn = require("../utils/userAuth");
+
 
 router.get("/", (req, res) => {
     res.render("homepage");
@@ -82,5 +84,56 @@ router.get("/exercises", (req, res) => {
             res.status(500).json(err);
         });
 });
+
+router.get('/type', (req,res) => {
+    Type.findAll({
+        attributes: ['id', 'type'],
+        // where: {
+        //     // user_id: req.session.user_id
+        // },
+        // include: [
+        //      {
+        //         model: Tags,
+        //         attributes: ['id', 'title'],
+        //     },
+        //     {
+        //         model: Difficulty,
+        //         attributes: ['id', 'difficulty']
+        //     }
+        // ]
+    })
+    .then(dbType => {
+        console.log(dbType);
+        if(!dbType) {
+            res.status(404).json({message: 'No info found!'});
+            return;
+        }
+        const options = dbType.map(data => data.get({ plain: true }));
+        console.log(options);
+
+        res.render('type-create', {
+            options
+            // loggedIn: req.session.loggedIn
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+
+
+
+
+router.get('/create',  (req,res) => {
+   
+    res.render('create-exercise')
+    
+
+});
+
+
+
 
 module.exports = router;
