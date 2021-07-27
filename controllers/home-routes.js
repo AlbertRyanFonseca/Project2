@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Post, User, Comment, Picture,Type, Tags,Difficulty} = require("../models");
 const sequelize = require("../config/connection");
+const isSignedIn = require("../utils/userAuth");
 
 
 router.get("/", (req, res) => {
@@ -125,32 +126,12 @@ router.get('/type', (req,res) => {
 
 
 
-router.get('/create', (req,res) => {
-    Post.findAll({
-        attributes: ['id', 'title', 'description', 'img_id', 'user_id'],
-        include: [
-            {model: Type,
-            attributes:['id', 'type',
-                [sequelize.literal(`SELECT type.type FROM type WHERE type = 'type.id'`), 'typeChoice']]
-        
-        }]
+router.get('/create',  (req,res) => {
+   
+    res.render('create-exercise')
     
-    })
-    .then(dbChoiceData => {
-        if(!dbChoiceData) {
-            res.status(404).json({ message: 'No data found!'})
-            return;
-        }
-        const options = dbChoiceData.map(data => data.get({plain: true}))
-        console.log(options);
-        res.render('create-exercise')
-            options
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    })
-})
+
+});
 
 
 

@@ -1,27 +1,41 @@
 <section>
     <h2>Create a new exercise!</h2>
-    <form class = "select">
-        {{>type-info }}
-        
-        {{!-- <label for="difficulty">Choose exercise difficulty:</label>
+    <form class = "new-exercise-form">
+    <class = "select">
+        <label for="difficulty">Choose exercise difficulty:</label>
         <select name="difficulty" id="exerciseDifficulty">
-            {{#each difficulty}}
-            <option value="{{difficulty}}"></option>
-            {{/each}}
+            <option value="3">Beginner</option>
+            <option value="2">Intermediate</option>
+            <option value="1">Expert</option>
+            
+            
+            
         </select>
-         <label for="tags">Choose Tags:</label>
-        <select name="tags" id="exerciseTags">
-            {{#each tags}}
-            <option value="{{title}}"></option>
-            {{/each}} --}}
-        {{!-- </select> --}}
+        <form id="tags">
+         <div>Choose Tags:</div>
+            <input  id="1" type="checkbox" name="tags1" >
+            <label for="tags1" > Weights</label><br>
+            <input  id="2" type="checkbox" name="tags2" >
+            <label for="tags2" > Outdoors</label><br>
+            <input   id="3" type="checkbox" name="tags3" >
+            <label for="tags3" > Gym Required</label><br>
+            <input   id="4" type="checkbox" name="tags4" >
+            <label for="tags4" > Quick</label><br>
+            </input>
+        </form>
+        
+        
+        <label for="type">Choose exercise type:</label>
+         <select name="type" id="exerciseType">
+            <option value="1">Cardio</option>
+            <option value="2">Core</option>
+            <option value="3">Strength</option>
+            <option value="4">Crossfit</option>
+        </select>
         {{!-- <label for="picture">Choose picture relating to exercise:</label>
         <select name="picture" id="exercisePicture">
             <option value="{{picture.img_url}}"></option>
         </select> --}}
-    </form>
-
-    <form class = 'new-exercise'>
         <div>
             <label for="exercise-title">Exercise:</label>
             <input type="text" id="exercise-title" name="exercise-title">
@@ -30,5 +44,8 @@
             <label for="exercise-description">Description:</label>
             <textarea name="exercise-description" id="description" ></textarea>
         </div>
+        <button type="submit" class="btn">Create</button>
     </form>
 </section>
+
+<script src="/javascript/create-exercise.js"></script>
