@@ -9,6 +9,7 @@ const {
     Tags,
     Difficulty,
     Type,
+    Picture,
 } = require("../../models");
 const isSignedIn = require("../../utils/userAuth");
 
@@ -51,6 +52,7 @@ router.get("/", (req, res) => {
             { model: Tags, attributes: ["title"] },
             { model: Difficulty, attributes: ["difficulty"] },
             { model: Type, attributes: ["type"] },
+            { model: Picture, attributes: ["id"] },
         ],
     })
         .then((dbPostData) => {
@@ -77,7 +79,8 @@ router.post("/", isSignedIn, (req, res) => {
         tagIds: req.body.tagIds,
         difficulty_id: req.body.difficulty_id,
         type_id: req.body.type_id, 
-        user_id: req.session.user_id
+        user_id: req.session.user_id,
+        img_id: req.body.img_id,
         })
         .then((dbPostData) => {
             // make the tag pairings in the PostTag model
