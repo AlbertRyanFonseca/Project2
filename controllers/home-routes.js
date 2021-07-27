@@ -84,6 +84,7 @@ router.get("/exercises", (req, res) => {
             });
             res.render("exercises", {
                 posts,
+                loggedIn: req.session.loggedIn,
             });
         })
         .catch((err) => {
@@ -140,6 +141,7 @@ router.get("/create", (req, res) => {
             });
             res.render("create-exercise", {
                 posts,
+                loggedIn: req.session.loggedIn,
             });
         })
         .catch((err) => {
