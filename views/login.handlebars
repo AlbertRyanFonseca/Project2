@@ -1,17 +1,27 @@
 <form action="">
-    <div>
-        <div>
+    <div class="form-container">
+        <h1 class="form-title">Login</h1>
+
+        <div class="form-input">
+            <input class="input-field" type="text" id="email-login" />
+            <span class="input-span"></span>
             <label class="form-label" for="email-login">Email:</label>
-            <input class="form-input" type="text" id="email-login" />
         </div>
-        <div>
+
+        <div class="form-input">
+            <input class="input-field" type="password" id="password-login" />
+            <span class="input-span"></span>
             <label class="form-label" for="password-login">Password:</label>
-            <input class="form-input" type="password" id="password-login" />
         </div>
 
-        <button class="form-button" type="submit" id="login-btn">Login</button>
+        <div class="form-button">
+            <button class="form-submit" type="submit" id="login-btn">Login</button>
+        </div>
 
-        <a class="register-link" href="/register">Don't have an account? Sign up today!</a>
+        <div class="form-signup">
+            <a class="register-link" href="/register">Don't have an account? Sign up today!</a>
+        </div>
     </div>
 </form>
+
 <script src="javascript/login.js"></script>
