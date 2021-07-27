@@ -1,19 +1,33 @@
 <form action="">
-    <div>
-        <div>
-            <label class="form-label" for="email-register">Email:</label>
-            <input class="form-input" type="text" id="email-register" />
-        </div>
-        <div>
-            <label class="form-label" for="username-register">Username:</label>
-            <input class="form-input" type="text" id="username-register">
-        </div>
-        <div>
-            <label class="form-label" for="password-register">Password:</label>
-            <input class="form-input" type="password" id="password-register" />
-        </div>
+        <div class="form-container">
+            <h1 class="form-title">Register</h1>
 
-        <button class="form-button" type="submit" id="register-btn">Submit</button>Sign Up</button>
-    </div>
-</form>
+            <div class="form-input">
+                <input class="input-field" type="text" id="email-register" />
+                <span class="input-span"></span>
+                <label class="form-label" for="email-register">Email:</label>
+            </div>
+
+            <div class="form-input">
+                <input class="input-field" type="text" id="username-register">
+                <span class="input-span"></span>
+                <label class="form-label" for="username-register">Username:</label>
+            </div>
+
+            <div class="form-input">
+                <input class="input-field" type="password" id="password-register" />
+                <span class="input-span"></span>
+                <label class="form-label" for="password-register">Password:</label>
+            </div>
+
+            <div class="form-button">
+                <button class="form-submit" type="submit" id="register-btn">Sign Up</button>
+            </div>
+
+            <div class="form-signin">
+                <a href="/login" class="signin-link">Already a member? Sign in!</a>
+            </div>
+        </div>
+    </form>
+    
 <script src="/javascript/register.js"></script>
