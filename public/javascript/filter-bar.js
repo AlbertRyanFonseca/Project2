@@ -21,7 +21,7 @@ async function filterBarHandler(event) {
     });
 
     if (response.ok) {
-        // document.location.replace('/exercises');
+        // document.location.reload();
     } else {
         alert(response.statusText);
     }

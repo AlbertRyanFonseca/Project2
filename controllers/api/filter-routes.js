@@ -70,13 +70,15 @@ router.post("/", (req, res) => {
             { model: Difficulty, attributes: ["difficulty"] },
             { model: Type, attributes: ["type"] },
         ],
-    }).then((dbPostData) => {
+    })
+
+    .then((dbPostData) => {
         const posts = dbPostData.map((post) => {
             post.dataValues.loggedIn = req.session.loggedIn;
             return post.get({ plain: true });
         });
         console.log(posts)
-        res.render("filtered-exercises", {
+        res.render("exercises", {
             posts,
             loggedIn: req.session.loggedIn,
         });
