@@ -49,34 +49,6 @@ form {
   display: flex;
   align-items: center;
 }
-.new-exercise-form {
-  justify-content: center;
-  width: 100%;
-  height: 80vh;
-}
-.filter-dropdowns {
-  /* width:20%; */
-  margin: 0 10px 0 10px;
-}
-
-.filter-dropdown-container {
-  display: flex;
-  align-items: center;
-  width: 50%;
-  justify-content:center;
-}
-.form-check-label{
-  padding:0 10px 0 0!important;
-  
-}
-.filter-bar-top {
-  background-color: rgb(189, 189, 189);
-  width: 100%;
-}
-#checkbox-btn-container {
-  display: flex;
-  align-items: center;
-}
 
 /* Nav bar */
 
@@ -118,6 +90,31 @@ form {
 
 .show {
   right: 0;
+}
+
+/* Filter Styling */
+
+.filter-dropdowns {
+  /* width:20%; */
+  margin: 0 10px 0 10px;
+}
+
+.filter-dropdown-container {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  justify-content: center;
+}
+.form-check-label {
+  padding: 0 10px 0 0 !important;
+}
+.filter-bar-top {
+  background-color: rgb(189, 189, 189);
+  width: 100%;
+}
+#checkbox-btn-container {
+  display: flex;
+  align-items: center;
 }
 
 /* Hero/Homepage Styling */
@@ -184,7 +181,7 @@ form {
   transition: 0.3s;
 }
 
-/* Form Styling */
+/* Login/Register Page Styling */
 
 .form-title {
   padding-bottom: 1.25rem;
@@ -270,6 +267,20 @@ form {
 .form-signup {
   text-align: center;
   margin-top: 3rem;
+}
+
+/* Create Exercise Page Styling */
+
+.new-exercise-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 80vh;
+}
+
+.create-title {
+  margin-bottom: 1.5rem;
 }
 
 /* Modal Cards */
