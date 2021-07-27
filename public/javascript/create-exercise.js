@@ -49,8 +49,8 @@ $("input:checkbox").click(function () {
         });
         tagIds = tempArr;
 
-        console.log(tagIds);
-        console.log(tempArr);
+        // console.log(tagIds);
+        // console.log(tempArr);
         // console.log(tags_id);
     }
 });
