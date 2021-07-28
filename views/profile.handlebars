@@ -1,0 +1,14 @@
+{{#if posts.length}}
+<section class="container">
+  <div class="row">
+      <h2>Your Posts</h2>
+      <ol>
+        {{#each posts as |post|}}
+        <li>
+          {{> exercise-info post}}
+        </li>
+        {{/each}}
+      </ol>
+  </div>
+</section>
+{{/if}}
