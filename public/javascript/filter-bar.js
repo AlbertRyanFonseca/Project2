@@ -8,7 +8,7 @@ async function filterBarHandler(event) {
     const difficulty = $("#exerciseDifficultyFilter option:selected").val()
     const type = $("#exerciseTypeFilter option:selected").val()
 
-    const response = await fetch('/api/filter', {
+    const response = await fetch('/exercises', {
         method: "POST",
         body: JSON.stringify({
             tags,

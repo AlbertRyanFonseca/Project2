@@ -78,9 +78,8 @@ router.post("/", (req, res) => {
             return post.get({ plain: true });
         });
         console.log(posts)
-        res.render("exercises", {
+        res.render("filtered-exercises", {
             posts,
-            loggedIn: req.session.loggedIn,
         });
     });
 });
