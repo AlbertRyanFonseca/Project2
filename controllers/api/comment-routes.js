@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { Comment } = require("../../models");
 // grab number of comments per post?
 const sequelize = require('../../config/connection');
+const isSignedIn = require("../../utils/userAuth");
 
 router.get('/', (req, res) => {
     Comment.findAll()
@@ -11,21 +12,21 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', isSignedIn, (req, res) => {
     Comment.create({
         comment_text: req.body.comment_text,
         post_id: req.body.post_id,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     }).then(dbComData => {
         res.status(200).json({message: "Successfully Created"}, dbComData)
     }).catch(err => {
         res.status(500).json(err)
     });
 });
-router.delete('/:id', (req, res) => {
+router.delete('/:id', isSignedIn, (req, res) => {
     Comment.destroy({
         where: {
-            id: red.params.id
+            id: req.params.id
         }
     }).then(dbComData => {
         if (!dbComData) {
