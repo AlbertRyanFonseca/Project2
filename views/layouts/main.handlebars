@@ -39,12 +39,13 @@
                                 >View Exercises</a></li>
                             <li class="nav-item"><a
                                     class="nav-link"
-                                    href="/profile"
+                                    href="/dashboard"
                                 >Profile</a></li>
-                            <li class="nav-item"><a
-                                    class="nav-link"
-                                    href="/homepage"
-                                >Logout</a></li>
+                            <li class="nav-item"><button
+                                    class="nav-link btn btn-link"
+                                    id="logout"
+                                >Logout</button></li>
+                            <li class="nav-item"><a href="/create" class="nav-link">Create Exercise</a></li>
                         </ul>
                     </div>
                 {{else}}
@@ -72,6 +73,7 @@
         <main>{{{body}}}</main>
         <script src="https://unpkg.com/scrollreveal"></script>
         <script src="javascript/homepage.js"></script>
+        <script src="/javascript/logout.js"></script>
 
     </body>
 </html>
