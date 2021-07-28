@@ -11,26 +11,25 @@ const {
 const sequelize = require("../../config/connection");
 const { Op } = require("sequelize");
 
-router.get("/", (req, res) => {
+router.post("/", (req, res) => {
     Post.findAll({
         where: {
             [Op.or]: [
                 {
                     id: {
                         [Op.or]: req.body.tags,
-                    }
+                    },
                 },
                 {
                     difficulty_id: {
                         [Op.eq]: req.body.difficulty,
-                    }
+                    },
                 },
                 {
                     type_id: {
                         [Op.eq]: req.body.type,
-                    }
+                    },
                 },
-                
             ],
         },
         attributes: [
@@ -71,8 +70,18 @@ router.get("/", (req, res) => {
             { model: Difficulty, attributes: ["difficulty"] },
             { model: Type, attributes: ["type"] },
         ],
-    }).then((dbPostData) => {
-        res.json(dbPostData);
+    })
+
+    .then((dbPostData) => {
+        const posts = dbPostData.map((post) => {
+            post.dataValues.loggedIn = req.session.loggedIn;
+            return post.get({ plain: true });
+        });
+        console.log(posts)
+        res.render("filtered-exercises", {
+            posts,
+        });
     });
 });
+
 module.exports = router;
