@@ -35,6 +35,9 @@ router.get("/profile", (req, res) => {
 
 router.get("/exercises", (req, res) => {
     Post.findAll({
+        where: {
+            user_id: req.session.user_id,
+        },
         attributes: [
             "id",
             "title",
@@ -99,17 +102,17 @@ router.post("/exercises", (req, res) => {
             [Op.or]: [
                 {
                     id: {
-                        [Op.or]: req.body.tags,
+                        [Op.or]: [req.body.tags],
                     },
                 },
                 {
                     difficulty_id: {
-                        [Op.eq]: req.body.difficulty,
+                        [Op.eq]: [req.body.difficulty],
                     },
                 },
                 {
                     type_id: {
-                        [Op.eq]: req.body.type,
+                        [Op.eq]: [req.body.type],
                     },
                 },
             ],
@@ -154,18 +157,21 @@ router.post("/exercises", (req, res) => {
         ],
     })
 
-    .then((dbPostData) => {
-        const posts = dbPostData.map((post) => {
-            post.dataValues.loggedIn = req.session.loggedIn;
-            return post.get({ plain: true });
-        });
-        console.log(posts)
-        res.render("exercises", {
-            posts,
-        });
-    });
+        .then((dbPostData) => {
+            const posts = dbPostData.map((post) => {
+                post.dataValues.loggedIn = req.session.loggedIn;
+                return post.get({ plain: true });
+            });
+            console.log(posts);
+            res.render("exercises", {
+                posts,
+            });
+            res.get("filtered-exercises");
+        })
+        // .then(() => res.redirect(res.get("referer")));
 });
 
+<<<<<<< Updated upstream
 router.get("/type", (req, res) => {
     Type.findAll({
         attributes: ["id", "type"],
@@ -182,6 +188,52 @@ router.get("/type", (req, res) => {
         //         attributes: ['id', 'difficulty']
         //     }
         // ]
+=======
+router.get("/exercises", (req, res) => {
+    Post.findAll({
+        attributes: [
+            "id",
+            "title",
+            "description",
+            "created_at",
+            [
+                sequelize.literal(
+                    "(SELECT COUNT(*) FROM votes WHERE post.id = votes.post_id)"
+                ),
+                "vote_count",
+            ],
+        ],
+        include: [
+            {
+                model: Comment,
+                attributes: [
+                    "id",
+                    "comment_text",
+                    "user_id",
+                    "post_id",
+                    "created_at",
+                    [
+                        sequelize.literal(
+                            "(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+                        ),
+                        "comment_count",
+                    ],
+                ],
+                include: {
+                    model: User,
+                    attributes: ["username"],
+                },
+            },
+            {
+                model: User,
+                attributes: ["username"],
+            },
+            {
+                model: Picture,
+                attributes: ["image_url"],
+            },
+        ],
+>>>>>>> Stashed changes
     })
         .then((dbType) => {
             console.log(dbType);
@@ -222,6 +274,5 @@ router.get("/create", (req, res) => {
             res.status(500).json(err);
         });
 });
-
 
 module.exports = router;
