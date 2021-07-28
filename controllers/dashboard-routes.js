@@ -48,7 +48,7 @@ router.get("/", isSignedIn, (req, res) => {
             post.dataValues.loggedIn = req.session.loggedIn;
             return post.get({ plain: true });
         });
-        res.render("dashboard", { posts });
+        res.render("dashboard", { posts, loggedIn:req.session.loggedIn });
     }).catch((err) => {
         res.status(500).json(err);
         console.log(err)
