@@ -29,9 +29,6 @@ router.get("/register", (req, res) => {
 });
 
 router.get("/profile", isSignedIn, (req, res) => {
-    // Post.findAll({
-    //    
-    //     attributes: ['id', ]
     Post.findAll({
         where: {
                     user_id: req.session.user_id
