@@ -38,6 +38,65 @@
 
 <body>
 
+    <section class="create-exercise">
+        <form class="form-whole">
+            <div class="new-exercise-form">
+                <h2 class="create-title">Create a new exercise!</h2>
+
+                <div class="diffculty-container">
+                    <label class="difficulty-label" for="difficulty">Choose exercise difficulty:</label>
+
+                    <select class="difficulty-select" name="difficulty" id="exerciseDifficulty">
+                        <option value="3">Beginner</option>
+                        <option value="2">Intermediate</option>
+                        <option value="1">Expert</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="type-container">
+                <label class="type-label" for="type">Choose exercise type:</label>
+
+                <select class="type-select" name="type" id="exerciseType">
+                    <option value="1">Cardio</option>
+                    <option value="2">Core</option>
+                    <option value="3">Strength</option>
+                    <option value="4">Crossfit</option>
+                </select>
+            </div>
+
+            <div class="tags-container">
+                <form class="form-tags" id="tags">
+                    <div>Choose Tags:</div>
+                    <input id="1" type="checkbox" name="tags1">
+                    <label for="tags1"> Weights</label><br>
+                    <input id="2" type="checkbox" name="tags2">
+                    <label for="tags2"> Outdoors</label><br>
+                    <input id="3" type="checkbox" name="tags3">
+                    <label for="tags3"> Gym Required</label><br>
+                    <input id="4" type="checkbox" name="tags4">
+                    <label for="tags4"> Quick</label><br>
+                    </input>
+                </form>
+            </div>
+
+            <div class="exercise-container">
+                <label class="exercise-title" for="exercise-title">Exercise:</label>
+                <input class="exercise-input" type="text" id="exercise-title" name="exercise-title">
+            </div>
+
+            <div class="description-container">
+                <label class="description-label" for="exercise-description">Description:</label>
+                <textarea class="description-input" name="description-input" id="description"></textarea>
+            </div>
+
+            <button type="button" class="btn-create" id="createBtn">Create</button>
+
+        </form>
+        <button type="button" class="btn-image" id="imgSelectBtn">Select Picture </button>
+
+    </section>
 
     <script src="../public/javascript/homepage.js"></script>
     <script src="../public/javascript/register.js"></script>
