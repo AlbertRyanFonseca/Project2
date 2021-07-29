@@ -1,14 +1,11 @@
 {{#if posts.length}}
 <section class="container">
-  <div class="row">
-      <h2>Your Posts</h2>
-      <ol>
+    <div class="row mt-3">
         {{#each posts as |post|}}
-        <li>
-          {{> exercise-info post}}
-        </li>
+        <div class="col-md-3 mt-3">
+            {{> exercise-info post}}
+        </div>
         {{/each}}
-      </ol>
-  </div>
+    </div>
 </section>
 {{/if}}
