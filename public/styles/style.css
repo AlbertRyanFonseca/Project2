@@ -271,7 +271,7 @@ form {
 
 /* Create Exercise Page Styling */
 
-.new-exercise-form {
+.create-exercise {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -279,8 +279,89 @@ form {
   height: 80vh;
 }
 
+.form-whole {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ex-difficulty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .create-title {
   margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.diffculty-container {
+  margin-bottom: 1rem;
+}
+
+.type-container {
+  margin-bottom: 1rem;
+}
+
+.tags-container {
+  margin-bottom: 1rem;
+}
+
+.exercise-container {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.exercise-title {
+  margin-right: 0.6rem;
+}
+
+.exercise-input {
+  width: 40%;
+}
+
+.description-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -1rem;
+}
+
+.description-label {
+  margin-right: 0.5rem;
+}
+
+.btn-create {
+  align-self: center;
+  margin-top: 2rem;
+  width: 40%;
+  padding: 0.5rem 1rem;
+  font-size: 1.125rem;
+  font-weight: 200;
+  background-color: #1874cd;
+  color: #fff;
+  border: 1px solid;
+  border-radius: 1.5625rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn-image {
+  align-self: center;
+  margin-top: 1rem;
+  width: 40%;
+  padding: 0.5rem 1rem;
+  background-color: #f72119;
+  color: #fff;
+  font-weight: 200;
+  font-size: 1.125rem;
+  border: 1px solid;
+  border-radius: 1.5625rem;
+  outline: none;
+  cursor: pointer;
 }
 
 /* Modal Cards */
@@ -332,5 +413,53 @@ form {
 
   .nav-toggle {
     display: none;
+  }
+
+  .create-title {
+    margin-top: 1.5rem;
+    font-size: 3.3rem;
+  }
+
+  .diffculty-container {
+    text-align: center;
+    font-size: 1.25rem;
+  }
+
+  .type-container {
+    font-size: 1.25rem;
+  }
+
+  .tags-container {
+    font-size: 1.25rem;
+  }
+
+  .exercise-container {
+    font-size: 1.25rem;
+  }
+
+  .exercise-input {
+    width: 11%;
+  }
+
+  .description-container {
+    font-size: 1.25rem;
+  }
+
+  .description-label {
+    margin-left: 3rem;
+  }
+
+  .description-input {
+    width: 15%;
+    height: 100%;
+    padding: 0.3rem;
+  }
+
+  .btn-create {
+    width: 15%;
+  }
+
+  .btn-image {
+    width: 15%;
   }
 }
