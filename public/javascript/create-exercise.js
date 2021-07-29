@@ -11,7 +11,7 @@ async function newExerciseHandler(event) {
     const type_id = document.querySelector('select[name="type"]').value;
     const title = document.querySelector('input[name="exercise-title"]').value;
     const description = document.querySelector(
-        'textarea[name="exercise-description"]'
+        'textarea[name="description-input"]'
     ).value;
 
     // console.log(tags_id);
