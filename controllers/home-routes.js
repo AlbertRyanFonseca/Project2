@@ -217,6 +217,7 @@ router.get("/exercises", (req, res) => {
             const posts = dbPostData.map((post) => {
                 post.dataValues.loggedIn = req.session.loggedIn;
                 return post.get({ plain: true });
+                console.log(posts);
             });
             res.render("exercises", {
                 posts,

@@ -8,4 +8,17 @@
         {{/each}}
     </div>
 </section>
+
+<section id = "comments" class = "position-absolute d-none" >
+    <div class="container">
+        <div class="row">
+        <textarea name="comments" id="addComment"></textarea>
+         <button class="">Add Comment</button>
+        {{>comments-section posts}}
+        </div>
+    </div>
+</section>
+
+
 <script src="javascript/filter-bar.js"></script>
+<script src="/javascript/comments.js"></script>
