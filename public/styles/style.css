@@ -167,7 +167,7 @@ form {
   margin-top: 5rem;
   padding: 0.9375rem 1.875rem;
   font-size: 1.125rem;
-  font-weight: 200;
+  font-weight: 400;
   background-color: #1874cd;
   color: #fff;
   border: 1px solid;
@@ -179,6 +179,10 @@ form {
 .hero-button:hover {
   border-color: #1874cd;
   transition: 0.3s;
+}
+
+.hero-link {
+  color: #fff;
 }
 
 /* Login/Register Page Styling */
