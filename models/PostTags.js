@@ -11,20 +11,6 @@ PostTags.init(
             primaryKey: true,
             autoIncrement: true
         },
-        tag_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'tags',
-                key: 'id'
-            }
-        },
-        post_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'post',
-                key: 'id'
-            }
-        }
     },
     {
         sequelize,

@@ -95,6 +95,20 @@ router.get("/profile", isSignedIn, (req, res) => {
 });
 router.get("/filtered-exercises", (req, res) => {
     Post.findAll({
+        where: {
+            [Op.or]: [
+                {
+                    difficulty_id: {
+                        [Op.eq]: [req.query.difficulty],
+                    },
+                },
+                {
+                    type_id: {
+                        [Op.eq]: [req.query.type],
+                    },
+                },
+            ],
+        },
         include: [
             {
                 model: Comment,
@@ -122,32 +136,12 @@ router.get("/filtered-exercises", (req, res) => {
                 model: Tags,
                 attributes: ["title"],
                 through: PostTags,
-                as: "tags",
             },
             {
                 model: Difficulty,
                 attributes: ["difficulty"],
             },
         ],
-        where: {
-            [Op.or]: [
-                {
-                    tags_id: {
-                        [Op.or]: req.query.tagIds,
-                    },
-                },
-                {
-                    difficulty_id: {
-                        [Op.eq]: [req.query.difficulty],
-                    },
-                },
-                {
-                    type_id: {
-                        [Op.eq]: [req.query.type],
-                    },
-                },
-            ],
-        },
         attributes: [
             "id",
             "title",

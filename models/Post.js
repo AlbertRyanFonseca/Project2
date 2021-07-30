@@ -54,13 +54,6 @@ Post.init(
                 key: "id",
             },
         },
-        tags_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: "tags",
-                key: "id",
-            },
-        },
     },
     {
         sequelize,
