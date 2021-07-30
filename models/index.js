@@ -72,16 +72,6 @@ Comment.belongsTo(Post, {
 });
 // post/comment association end
 
-
-// post to tags association start 
-// PostTags.hasMany(Tags, {
-//     foreignKey: 'tag_id'
-// });
-
-// Tags.belongsTo(PostTags, {
-//     foreignKey: 'tag_id'
-// });
-
 Post.belongsToMany(Tags, {
     through: PostTags,
     // as:'tags',
@@ -93,15 +83,6 @@ Tags.belongsToMany(Post, {
     // as:'tags',
     foreignKey: 'tag_id'
 });
-
-// PostTags.hasMany(Post, {
-//     foreignKey:'post_id',
-// });
-
-// Post.belongsTo(PostTags, {
-//     foreignKey: 'post_id'
-// });
-// post to tags association end
 
 // img/post association start 
 Picture.hasMany(Post, {

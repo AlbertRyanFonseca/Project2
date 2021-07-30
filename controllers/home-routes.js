@@ -7,6 +7,7 @@ const {
     Type,
     Tags,
     Difficulty,
+    PostTags,
 } = require("../models");
 const sequelize = require("../config/connection");
 const isSignedIn = require("../utils/userAuth");
@@ -32,8 +33,8 @@ router.get("/register", (req, res) => {
 router.get("/profile", isSignedIn, (req, res) => {
     Post.findAll({
         where: {
-                    user_id: req.session.user_id
-                },
+            user_id: req.session.user_id,
+        },
         attributes: [
             "id",
             "title",
@@ -91,25 +92,30 @@ router.get("/profile", isSignedIn, (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
-
 });
-router.post("/exercises", (req, res) => {
+router.get("/filtered-exercises", (req, res) => {
     Post.findAll({
         where: {
             [Op.or]: [
                 {
-                    id: {
-                        [Op.or]: req.body.tags,
+                    tags.id: {
+                        [Op.or]: [1, 2],
+                        include: [
+                            {
+                                model: Tags,
+                                attributes: "title",
+                            },
+                        ],
                     },
                 },
                 {
                     difficulty_id: {
-                        [Op.eq]: req.body.difficulty,
+                        [Op.eq]: [req.query.difficulty],
                     },
                 },
                 {
                     type_id: {
-                        [Op.eq]: req.body.type,
+                        [Op.eq]: [req.query.type],
                     },
                 },
             ],
@@ -118,6 +124,7 @@ router.post("/exercises", (req, res) => {
             "id",
             "title",
             "created_at",
+            "description",
             [
                 sequelize.literal(
                     "(SELECT COUNT(*) FROM votes WHERE post.id = votes.post_id)"
@@ -148,25 +155,32 @@ router.post("/exercises", (req, res) => {
                 model: Picture,
                 attributes: ["image_url"],
             },
-            { model: Tags, attributes: ["title"] },
-            { model: Difficulty, attributes: ["difficulty"] },
-            { model: Type, attributes: ["type"] },
+            {
+                model: Tags,
+                attributes: ["title"],
+                through: PostTags,
+                as: "tags",
+            },
+            {
+                model: Difficulty,
+                attributes: ["difficulty"],
+            },
+            {
+                model: Type,
+                attributes: ["type"],
+            },
         ],
-    })
-
-    .then((dbPostData) => {
+    }).then((dbPostData) => {
         const posts = dbPostData.map((post) => {
             post.dataValues.loggedIn = req.session.loggedIn;
             return post.get({ plain: true });
         });
-        console.log(posts)
+        console.log(posts);
         res.render("exercises", {
             posts,
         });
     });
 });
-
-
 
 router.get("/exercises", (req, res) => {
     Post.findAll({
@@ -285,6 +299,5 @@ router.get("/create", isSignedIn, (req, res) => {
             res.status(500).json(err);
         });
 });
-
 
 module.exports = router;
