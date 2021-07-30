@@ -95,43 +95,6 @@ router.get("/profile", isSignedIn, (req, res) => {
 });
 router.get("/filtered-exercises", (req, res) => {
     Post.findAll({
-        where: {
-            [Op.or]: [
-                {
-                    tags.id: {
-                        [Op.or]: [1, 2],
-                        include: [
-                            {
-                                model: Tags,
-                                attributes: "title",
-                            },
-                        ],
-                    },
-                },
-                {
-                    difficulty_id: {
-                        [Op.eq]: [req.query.difficulty],
-                    },
-                },
-                {
-                    type_id: {
-                        [Op.eq]: [req.query.type],
-                    },
-                },
-            ],
-        },
-        attributes: [
-            "id",
-            "title",
-            "created_at",
-            "description",
-            [
-                sequelize.literal(
-                    "(SELECT COUNT(*) FROM votes WHERE post.id = votes.post_id)"
-                ),
-                "vote_count",
-            ],
-        ],
         include: [
             {
                 model: Comment,
@@ -165,11 +128,39 @@ router.get("/filtered-exercises", (req, res) => {
                 model: Difficulty,
                 attributes: ["difficulty"],
             },
-            {
-                model: Type,
-                attributes: ["type"],
-            },
         ],
+        where: {
+            [Op.or]: [
+                {
+                    tags_id: {
+                        [Op.or]: req.query.tagIds,
+                    },
+                },
+                {
+                    difficulty_id: {
+                        [Op.eq]: [req.query.difficulty],
+                    },
+                },
+                {
+                    type_id: {
+                        [Op.eq]: [req.query.type],
+                    },
+                },
+            ],
+        },
+        attributes: [
+            "id",
+            "title",
+            "created_at",
+            "description",
+            [
+                sequelize.literal(
+                    "(SELECT COUNT(*) FROM votes WHERE post.id = votes.post_id)"
+                ),
+                "vote_count",
+            ],
+        ],
+        
     }).then((dbPostData) => {
         const posts = dbPostData.map((post) => {
             post.dataValues.loggedIn = req.session.loggedIn;
