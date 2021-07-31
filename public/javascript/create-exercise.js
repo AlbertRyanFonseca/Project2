@@ -1,7 +1,6 @@
 const img_id = [];
-let tagIds = [];
+let tagIds=[];
 let type_id;
-let tempArr;
 async function newExerciseHandler(event) {
     event.preventDefault();
 
@@ -43,13 +42,11 @@ $("input:checkbox").click(function () {
         tagIds.push($(this).attr("id"));
         // console.log(tags_id);
     } else if ($(this).prop("checked", false)) {
-        tempArr = [];
-        tempArr = tagIds.filter((tag) => {
+        tagIds = tagIds.filter((tag) => {
             return $(this).attr("id") != tag;
         });
-        tagIds = tempArr;
-        // console.log(tags_id);
     }
+    console.log(tagIds);
 });
 
 function getImageId() {
