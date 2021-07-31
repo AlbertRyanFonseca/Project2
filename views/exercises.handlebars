@@ -1,6 +1,6 @@
 {{> filter-bar }}
 <section class="container">
-    <div class="row mt-3">
+    <div class="row mt-3 postId">
         {{#each posts as |post|}}
         <div class="col-md-3 mt-3">
             {{> exercise-info post}}
@@ -8,4 +8,6 @@
         {{/each}}
     </div>
 </section>
+
+<script src="javascript/post-card.js"></script>
 <script src="javascript/filter-bar.js"></script>
