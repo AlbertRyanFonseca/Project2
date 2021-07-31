@@ -1,30 +1,51 @@
-<div class="container">
-       <section class="hero row">
-           <img src="{{image_url}}" alt="">
-           <div id="fav-icon-container">
+ 
+ <div class="container">
+       <section class="post-hero row">
+           <div class = "col-md-6">
+            <img src="{{post.picture.image_url}}" alt="">
+            <div id="fav-icon-container">
                <i class="fav-icon"></i>
            </div>
-       </section>
-       <section class="title-container row">
-           <h1 class='col-10'>{{title}}</h1>
-           <div class="upvote-container col-2">
-               <i class="thumb-icon"></i>
-               {{vote_count}}
+           </div>
+           <div class="col-md-6">
+           <h1 class='col-10'>{{post.title}}</h1>
+          
+           </div>
            </div>
        </section>
        <section class="row">
-            <div class="description col-8">
-                {{description}}
-            </div>
-            <div class="tags-container col-4">
-                {{tag_title}}
+            <div class="description col-6">
+                 <div class="upvote-container col-2">
+               <i class="thumb-icon"></i>
+              {{post.vote_count}}
+                 </div>
+                 {{#each post.tags as |tag|}} 
+                {{tag.tag_title}}
+                {{/each}}
+                
             </div>
        </section>
+       <section class= "row">
+            <div class="tags-container col-12">
+               {{post.description}}
+            </div>
+        </section>
+       <section>
+           {{#if loggedIn}}
+           <textarea name="comment" id=""></textarea>
+           <button id="addComment">Add comment</button>
+           {{/if}}
+       </section>
        <section class="comment-container">
-            {{>comments post.comments}}
+            {{> comments post.comments}}
 
        </section>
    </div>
+
+   {{#if loggedIn}}
+   <script src="/javascript/add-comment.js"></script>
+   <script src="/javascript/vote.js"></script>
+   {{/if}}
 
 
 
