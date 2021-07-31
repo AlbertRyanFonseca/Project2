@@ -273,6 +273,12 @@ router.get("/post/:id", (req, res) => {
                 model: Picture,
                 attributes: ["image_url"],
             },
+            {
+                model: Tags,
+                attributes: ["title"],
+                as: "tag_title"
+            },
+
         ],
     })
         .then((dbPostData) => {
