@@ -1,34 +1,42 @@
-<div class="container">
+<div class="container mt-5">
             <section class="post-hero row">
                 <div class="col-md-6">
                     <img src="{{post.picture.image_url}}" alt="" />
                 </div>
-                <div class="col-md-6 row justify-content-conter align-items-center">
+                <div class="col-md-6 row justify-content-center align-items-center">
                     <h1 class="col-10 post-title text-center">"{{post.title}}"</h1>
-                </div>
-            </section>
-            <section class="row mt-3">
-                <div class="upvote-container col-4 row align-items-center">
-                    <div class="thumb-icon col-2">
-                        <img
-                            src="/icons/thumbs-up-normal.png"
-                            alt="thumbs-up-icon"
-                            id="thumbs-up-post"
-                        />
-                    </div>
-                    <div class="vote-count-container col-2">
-                        <h2>{{post.vote_count}}</h2>
-                    </div>
-                </div>
-                <div class="col-8 row align-items-center">
-                    {{#each post.tags as |tag|}} 
-                    <h3 class="col-3 ">{{tag.tag_title}}</h3> 
-                    {{/each}}
                 </div>
             </section>
 
             <section class="row mt-3">
-                <div class="col-12">{{post.description}}</div>
+                <div class="col-8">{{post.description}}</div>
+                <div class="col-4 row justify-content-center align-items-center">
+                    <div class="upvote-container row col-5 align-items-center">
+                        <div class="thumb-icon col-6">
+                            <img
+                                src="/icons/thumbs-up-normal.png"
+                                alt="thumbs-up-icon"
+                                id="thumbs-up-post"
+                                onmouseover="onHover();"
+                                onmouseout="offHover();"
+                            />
+                        </div>
+                        <div class="vote-count-container col-5">
+                            <h2>{{post.vote_count}}</h2>
+                        </div>
+                    </div>
+                    <div class="col-7 align-items-center justify-content-center mt-4 text-end">
+                        <h2>Tags:</h2>
+                        <ul>
+                        {{#each post.tags as |tag|}}
+                        <li>
+                            <h5 class="col-3 text-end w-100">{{tag.tag_title}}</h5>
+                        </li>
+                        {{/each}}
+
+                        </ul>
+                    </div>
+                </div>
             </section>
             <section class="mb-3">
                 {{#if loggedIn}}

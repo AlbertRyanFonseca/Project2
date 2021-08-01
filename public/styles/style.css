@@ -14,8 +14,8 @@ h1, h2, h3, h4, h5, h6 {
 p {
   font-family: 'Merriweather Sans', sans-serif;
 }
-main {
-  margin-top: 5rem;
+.view-posts{
+  margin: 5rem;
 }
 header {
   position: fixed;

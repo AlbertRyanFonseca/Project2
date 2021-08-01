@@ -2,7 +2,7 @@
     {{#each this}}
     <div class="comment">
         <div class="comment-info">
-            {{user.username}} on {{created_at}}
+            {{user.username}} on {{format_date created_at}}
         </div>
         <div class="inner-text">
             {{comment_text}}
