@@ -12,14 +12,15 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', isSignedIn, (req, res) => {
+router.post('/', (req, res) => {
     Comment.create({
         comment_text: req.body.comment_text,
         post_id: req.body.post_id,
         user_id: req.session.user_id
     }).then(dbComData => {
-        res.status(200).json({message: "Successfully Created"}, dbComData)
+        res.status(200).json({message: "Successfully Created"})
     }).catch(err => {
+        console.log(err);
         res.status(500).json(err)
     });
 });

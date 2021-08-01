@@ -56,7 +56,6 @@ router.get("/", (req, res) => {
         ],
     })
         .then((dbPostData) => {
-            console.log(dbPostData);
             res.json(dbPostData);
         })
         .catch((err) => {
@@ -73,18 +72,15 @@ router.post("/", isSignedIn, (req, res) => {
     //       "type_id": 2,
     //       "difficulty_id": 2,
     //       "tagIds": [1,3,2],
-    Post.create(
-        {
-            title: req.body.title,
-            description: req.body.description,
-            difficulty_id: req.body.difficulty_id,
-            type_id: req.body.type_id,
-            user_id: req.session.user_id,
-            img_id: req.body.img_id,
-            tagIds: req.body.tagIds,
-        },
-        // console.log(req.body.tagIds)
-    )
+    Post.create({
+        title: req.body.title,
+        description: req.body.description,
+        difficulty_id: req.body.difficulty_id,
+        type_id: req.body.type_id,
+        user_id: req.session.user_id,
+        img_id: req.body.img_id,
+        tagIds: req.body.tagIds,
+    })
         .then((dbPostData) => {
             if (req.body.tagIds.length) {
                 const postTagIdArr = req.body.tagIds.map((tag_id) => {

@@ -160,7 +160,7 @@ router.get("/filtered-exercises", (req, res) => {
             post.dataValues.loggedIn = req.session.loggedIn;
             return post.get({ plain: true });
         });
-        console.log(posts);
+        (posts);
         res.render("exercises", {
             posts,
         });
@@ -227,8 +227,9 @@ router.get("/exercises", (req, res) => {
             res.status(500).json(err);
         });
 });
+
 router.get("/post/:id", (req, res) => {
-    Post.findAll({
+    Post.findOne({
         where: { 
             id: req.params.id,
         },
@@ -275,64 +276,26 @@ router.get("/post/:id", (req, res) => {
             },
             {
                 model: Tags,
-                attributes: ["title"],
-                as: "tag_title"
+                attributes: [["title", "tag_title"]],
+                
             },
 
         ],
     })
         .then((dbPostData) => {
-            const posts = dbPostData.map((post) => {
-                post.dataValues.loggedIn = req.session.loggedIn;
-                return post.get({ plain: true });
-            });
+            const post = dbPostData.get({ plain: true });
             res.render("post", {
-                posts,
+                post,
                 loggedIn: req.session.loggedIn,
-            });
+            })
         })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json(err);
+            })
+        })
+    
 
-// router.get("/type", (req, res) => {
-//     Type.findAll({
-//         attributes: ["id", "type"],
-//         // where: {
-//         //     // user_id: req.session.user_id
-//         // },
-//         // include: [
-//         //      {
-//         //         model: Tags,
-//         //         attributes: ['id', 'title'],
-//         //     },
-//         //     {
-//         //         model: Difficulty,
-//         //         attributes: ['id', 'difficulty']
-//         //     }
-//         // ]
-//     })
-//         .then((dbType) => {
-//             console.log(dbType);
-//             if (!dbType) {
-//                 res.status(404).json({ message: "No info found!" });
-//                 return;
-//             }
-//             const options = dbType.map((data) => data.get({ plain: true }));
-//             console.log(options);
-
-//             res.render("type-create", {
-//                 options,
-//                 // loggedIn: req.session.loggedIn
-//             });
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//             res.status(500).json(err);
-//         });
-// });
 
 router.get("/create", isSignedIn, (req, res) => {
     Picture.findAll({
