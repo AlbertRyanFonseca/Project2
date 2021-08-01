@@ -7,6 +7,7 @@ const {
     Type,
     Tags,
     Difficulty,
+    PostTags,
 } = require("../models");
 const sequelize = require("../config/connection");
 const isSignedIn = require("../utils/userAuth");
@@ -32,8 +33,8 @@ router.get("/register", (req, res) => {
 router.get("/profile", isSignedIn, (req, res) => {
     Post.findAll({
         where: {
-                    user_id: req.session.user_id
-                },
+            user_id: req.session.user_id,
+        },
         attributes: [
             "id",
             "title",
@@ -91,40 +92,23 @@ router.get("/profile", isSignedIn, (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
-
 });
-router.post("/exercises", (req, res) => {
+router.get("/filtered-exercises", (req, res) => {
     Post.findAll({
         where: {
             [Op.or]: [
                 {
-                    id: {
-                        [Op.or]: req.body.tags,
-                    },
-                },
-                {
                     difficulty_id: {
-                        [Op.eq]: req.body.difficulty,
+                        [Op.eq]: [req.query.difficulty],
                     },
                 },
                 {
                     type_id: {
-                        [Op.eq]: req.body.type,
+                        [Op.eq]: [req.query.type],
                     },
                 },
             ],
         },
-        attributes: [
-            "id",
-            "title",
-            "created_at",
-            [
-                sequelize.literal(
-                    "(SELECT COUNT(*) FROM votes WHERE post.id = votes.post_id)"
-                ),
-                "vote_count",
-            ],
-        ],
         include: [
             {
                 model: Comment,
@@ -148,25 +132,40 @@ router.post("/exercises", (req, res) => {
                 model: Picture,
                 attributes: ["image_url"],
             },
-            { model: Tags, attributes: ["title"] },
-            { model: Difficulty, attributes: ["difficulty"] },
-            { model: Type, attributes: ["type"] },
+            {
+                model: Tags,
+                attributes: ["title"],
+                through: PostTags,
+            },
+            {
+                model: Difficulty,
+                attributes: ["difficulty"],
+            },
         ],
-    })
-
-    .then((dbPostData) => {
+        attributes: [
+            "id",
+            "title",
+            "created_at",
+            "description",
+            [
+                sequelize.literal(
+                    "(SELECT COUNT(*) FROM votes WHERE post.id = votes.post_id)"
+                ),
+                "vote_count",
+            ],
+        ],
+        
+    }).then((dbPostData) => {
         const posts = dbPostData.map((post) => {
             post.dataValues.loggedIn = req.session.loggedIn;
             return post.get({ plain: true });
         });
-        console.log(posts)
+        (posts);
         res.render("exercises", {
             posts,
         });
     });
 });
-
-
 
 router.get("/exercises", (req, res) => {
     Post.findAll({
@@ -229,42 +228,74 @@ router.get("/exercises", (req, res) => {
         });
 });
 
-// router.get("/type", (req, res) => {
-//     Type.findAll({
-//         attributes: ["id", "type"],
-//         // where: {
-//         //     // user_id: req.session.user_id
-//         // },
-//         // include: [
-//         //      {
-//         //         model: Tags,
-//         //         attributes: ['id', 'title'],
-//         //     },
-//         //     {
-//         //         model: Difficulty,
-//         //         attributes: ['id', 'difficulty']
-//         //     }
-//         // ]
-//     })
-//         .then((dbType) => {
-//             console.log(dbType);
-//             if (!dbType) {
-//                 res.status(404).json({ message: "No info found!" });
-//                 return;
-//             }
-//             const options = dbType.map((data) => data.get({ plain: true }));
-//             console.log(options);
+router.get("/post/:id", (req, res) => {
+    Post.findOne({
+        where: { 
+            id: req.params.id,
+        },
+        attributes: [
+            "id",
+            "title",
+            "description",
+            "created_at",
+            [
+                sequelize.literal(
+                    "(SELECT COUNT(*) FROM votes WHERE post.id = votes.post_id)"
+                ),
+                "vote_count",
+            ],
+        ],
+        include: [
+            {
+                model: Comment,
+                attributes: [
+                    "id",
+                    "comment_text",
+                    "user_id",
+                    "post_id",
+                    "created_at",
+                    [
+                        sequelize.literal(
+                            "(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)"
+                        ),
+                        "comment_count",
+                    ],
+                ],
+                include: {
+                    model: User,
+                    attributes: ["username"],
+                },
+            },
+            {
+                model: User,
+                attributes: ["username"],
+            },
+            {
+                model: Picture,
+                attributes: ["image_url"],
+            },
+            {
+                model: Tags,
+                attributes: [["title", "tag_title"]],
+                
+            },
 
-//             res.render("type-create", {
-//                 options,
-//                 // loggedIn: req.session.loggedIn
-//             });
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//             res.status(500).json(err);
-//         });
-// });
+        ],
+    })
+        .then((dbPostData) => {
+            const post = dbPostData.get({ plain: true });
+            res.render("post", {
+                post,
+                loggedIn: req.session.loggedIn,
+            })
+        })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json(err);
+            })
+        })
+    
+
 
 router.get("/create", isSignedIn, (req, res) => {
     Picture.findAll({
@@ -285,6 +316,5 @@ router.get("/create", isSignedIn, (req, res) => {
             res.status(500).json(err);
         });
 });
-
 
 module.exports = router;

@@ -1,0 +1,27 @@
+<div class="container">
+       <section class="post-hero row">
+           <img src="{{picture.image_url}}" alt="">
+           <div id="fav-icon-container">
+               <i class="fav-icon"></i>
+           </div>
+       </section>
+       <section class="title-container row">
+           <h1 class='col-10'>{{title}}</h1>
+           <div class="upvote-container col-2">
+               <i class="thumb-icon"></i>
+               {{vote_count}}
+           </div>
+       </section>
+       <section class="row">
+            <div class="description col-8">
+                {{description}}
+            </div>
+            <div class="tags-container col-4">
+                {{tag_title}}
+            </div>
+       </section>
+       <section class="comment-container">
+            {{>comments post.comments}}
+
+       </section>
+   </div>

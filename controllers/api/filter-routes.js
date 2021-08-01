@@ -77,7 +77,6 @@ router.post("/", (req, res) => {
             post.dataValues.loggedIn = req.session.loggedIn;
             return post.get({ plain: true });
         });
-        console.log(posts)
         res.render("filtered-exercises", {
             posts,
         });

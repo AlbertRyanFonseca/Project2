@@ -56,7 +56,6 @@ router.get("/", (req, res) => {
         ],
     })
         .then((dbPostData) => {
-            console.log(dbPostData);
             res.json(dbPostData);
         })
         .catch((err) => {
@@ -75,15 +74,14 @@ router.post("/", isSignedIn, (req, res) => {
     //       "tagIds": [1,3,2],
     Post.create({
         title: req.body.title,
-        description:req.body.description,
-        tagIds: req.body.tagIds,
+        description: req.body.description,
         difficulty_id: req.body.difficulty_id,
-        type_id: req.body.type_id, 
+        type_id: req.body.type_id,
         user_id: req.session.user_id,
         img_id: req.body.img_id,
-        })
+        tagIds: req.body.tagIds,
+    })
         .then((dbPostData) => {
-            // make the tag pairings in the PostTag model
             if (req.body.tagIds.length) {
                 const postTagIdArr = req.body.tagIds.map((tag_id) => {
                     return {
@@ -100,6 +98,27 @@ router.post("/", isSignedIn, (req, res) => {
         .catch((err) => {
             res.status(500).json(err);
             console.log(err);
+        });
+});
+router.put("/votes", isSignedIn, (req, res) => {
+    Post.vote(
+        {
+            ...req.body,
+            user_id: req.session.user_id,
+        },
+        {
+            Votes,
+            Comment,
+            User,
+        }
+    )
+        .then((result) => {
+            console.log("You got here!");
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json(err);
         });
 });
 router.put("/:id", (req, res) => {
@@ -161,8 +180,5 @@ router.delete("/:id", isSignedIn, (req, res) => {
             console.log(err);
         });
 });
-
-
-
 
 module.exports = router;
