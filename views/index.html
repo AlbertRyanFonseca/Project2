@@ -38,35 +38,29 @@
 
 <body>
 
-    <section class="register-container">
-        <form class="register-form" action="">
+    <section class="login-container">
+        <form class="login-form" action="">
             <div class="form-container">
-                <h1 class="form-title">Register</h1>
+                <h1 class="form-title">Login</h1>
 
                 <div class="form-input">
-                    <input class="input-field" type="text" id="email-register" />
+                    <input class="input-field" type="text" id="email-login" />
                     <span class="input-span"></span>
-                    <label class="form-label" for="email-register">Email:</label>
+                    <label class="form-label" for="email-login">Email:</label>
                 </div>
 
                 <div class="form-input">
-                    <input class="input-field" type="text" id="username-register">
+                    <input class="input-field" type="password" id="password-login" />
                     <span class="input-span"></span>
-                    <label class="form-label" for="username-register">Username:</label>
-                </div>
-
-                <div class="form-input">
-                    <input class="input-field" type="password" id="password-register" />
-                    <span class="input-span"></span>
-                    <label class="form-label" for="password-register">Password:</label>
+                    <label class="form-label" for="password-login">Password:</label>
                 </div>
 
                 <div class="form-button">
-                    <button class="form-submit" type="submit" id="register-btn">Sign Up</button>
+                    <button class="form-submit" type="submit" id="login-btn">Login</button>
                 </div>
 
-                <div class="form-signin">
-                    <a href="/login" class="signin-link">Already a member? Sign in!</a>
+                <div class="form-signup">
+                    <a class="register-link" href="/register">Don't have an account? Sign up today!</a>
                 </div>
             </div>
         </form>
