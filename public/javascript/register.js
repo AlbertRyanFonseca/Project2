@@ -5,7 +5,6 @@ async function registerUser(e)  {
     const email = $("#email-register").val().trim();
     const password = $("#password-register").val().trim();
 
-    console.log(username, email, password)
 
     if (username && email && password) {
         const response = await fetch("/api/users",{

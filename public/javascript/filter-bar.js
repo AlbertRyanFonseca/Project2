@@ -13,17 +13,13 @@ async function filterBarHandler(event) {
 $("input:checkbox").click(function () {
     if ($(this).prop("checked")) {
         tags.push($(this).attr("id"));
-        console.log(tags);
     } else if ($(this).prop("checked", false)) {
         
         tags = tags.filter((tag) => {
             return $(this).attr("id") != tag;
         });
         
-        // console.log(tempArr);
-        // console.log(tags_id);
     }
-    console.log(tags);
 });
 
 $("#filterBtn").on("click", filterBarHandler);
