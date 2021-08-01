@@ -4,7 +4,6 @@ async function loginUser(e) {
     const email = $("#email-login").val().trim();
     const password = $("#password-login").val().trim();
 
-    console.log(email, password)
 
     if (email && password) {
         const response = await fetch("/api/users/login", {

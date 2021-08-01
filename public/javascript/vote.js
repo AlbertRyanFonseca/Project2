@@ -4,22 +4,21 @@ async function voteHandler(event) {
     const post_id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1
     ];
-
-    const response = await fetch('/api/users/votes', {
-        method: 'POST',
-        body:JSON.stringify({
-            post_id
+    const response = await fetch('/api/posts/votes', {
+        method: 'PUT',
+        body: JSON.stringify({
+          post_id: post_id,
         }),
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         }
-    });
-
-if(response.ok) {
-    document.location.reload();
-} else {
-    alert(response.statusText);
+      });
+      if(response.ok) {
+          document.location.reload();
+          console.log(response) 
+        } else {
+            alert(`This is the response from the front end error ${response.statusText}`);
+        }
 }
-}
 
-document.querySelector('').addEventListener('click', voteHandler);
+$('#thumbs-up-post').on('click', voteHandler);

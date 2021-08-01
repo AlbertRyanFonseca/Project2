@@ -160,7 +160,7 @@ router.get("/filtered-exercises", (req, res) => {
             post.dataValues.loggedIn = req.session.loggedIn;
             return post.get({ plain: true });
         });
-        console.log(posts);
+        (posts);
         res.render("exercises", {
             posts,
         });
@@ -284,7 +284,6 @@ router.get("/post/:id", (req, res) => {
     })
         .then((dbPostData) => {
             const post = dbPostData.get({ plain: true });
-            console.log(post);
             res.render("post", {
                 post,
                 loggedIn: req.session.loggedIn,

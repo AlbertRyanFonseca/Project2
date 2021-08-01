@@ -1,5 +1,5 @@
 const img_id = [];
-let tagIds=[];
+let tagIds = [];
 let type_id;
 async function newExerciseHandler(event) {
     event.preventDefault();
@@ -13,7 +13,6 @@ async function newExerciseHandler(event) {
         'textarea[name="description-input"]'
     ).value;
 
-    // console.log(tags_id);
 
     const response = await fetch(`/api/posts`, {
         method: "POST",
@@ -40,13 +39,12 @@ async function newExerciseHandler(event) {
 $("input:checkbox").click(function () {
     if ($(this).prop("checked")) {
         tagIds.push($(this).attr("id"));
-        // console.log(tags_id);
+        // (tags_id);
     } else if ($(this).prop("checked", false)) {
         tagIds = tagIds.filter((tag) => {
             return $(this).attr("id") != tag;
         });
     }
-    console.log(tagIds);
 });
 
 function getImageId() {
