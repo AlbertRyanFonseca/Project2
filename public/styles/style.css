@@ -8,7 +8,15 @@
 html {
   scroll-behavior: smooth;
 }
-
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather Sans', sans-serif;
+}
+p {
+  font-family: 'Merriweather Sans', sans-serif;
+}
+.view-posts{
+  margin: 5rem;
+}
 header {
   position: fixed;
   width: 100%;
@@ -35,9 +43,9 @@ a {
 }
 
 body {
-  margin-top: 3.5rem;
   line-height: 1.3;
 }
+
 
 img {
   max-width: 100%;
@@ -58,7 +66,9 @@ form {
   margin-left: 1rem;
   color: #fff;
 }
-
+.post-title {
+  font-size:5rem
+}
 
 @media screen and (max-width: 767px) {
   .nav-menu {

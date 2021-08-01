@@ -1,59 +1,55 @@
- 
- <div class="container">
-       <section class="post-hero row">
-           <div class = "col-md-6">
-            <img src="{{post.picture.image_url}}" alt="">
-            <div id="fav-icon-container">
-               <i class="fav-icon"></i>
-           </div>
-           </div>
-           <div class="col-md-6">
-           <h1 class='col-10'>{{post.title}}</h1>
-          
-           </div>
-           </div>
-       </section>
-       <section class="row">
-            <div class="description col-6">
-                 <div class="upvote-container col-2">
-               <i class="thumb-icon"></i>
-              {{post.vote_count}}
-                 </div>
-                 {{#each post.tags as |tag|}} 
-                {{tag.tag_title}}
-                {{/each}}
-                
-            </div>
-       </section>
-       <span>
-                <img
-                    src="/icons/thumbs-up-normal.png"
-                    alt="thumbs-up-icon"
-                    id="thumbs-up-post"
-                />
-                {{vote_count}}
-            </span>
-       <section class= "row">
-            <div class="tags-container col-12">
-               {{post.description}}
-            </div>
-        </section>
-       <section>
-           {{#if loggedIn}}
-           <textarea name="comment" id=""></textarea>
-           <button id="addComment">Add comment</button>
-           {{/if}}
-       </section>
-       <section class="comment-container">
-            {{> comments post.comments}}
+<div class="container mt-5">
+            <section class="post-hero row">
+                <div class="col-md-6">
+                    <img src="{{post.picture.image_url}}" alt="" />
+                </div>
+                <div class="col-md-6 row justify-content-center align-items-center">
+                    <h1 class="col-10 post-title text-center">"{{post.title}}"</h1>
+                </div>
+            </section>
 
-       </section>
-   </div>
+            <section class="row mt-3">
+                <div class="col-8">{{post.description}}</div>
+                <div class="col-4 row justify-content-center align-items-center">
+                    <div class="upvote-container row col-5 align-items-center">
+                        <div class="thumb-icon col-6">
+                            <img
+                                src="/icons/thumbs-up-normal.png"
+                                alt="thumbs-up-icon"
+                                id="thumbs-up-post"
+                                onmouseover="onHover();"
+                                onmouseout="offHover();"
+                            />
+                        </div>
+                        <div class="vote-count-container col-5">
+                            <h2>{{post.vote_count}}</h2>
+                        </div>
+                    </div>
+                    <div class="col-7 align-items-center justify-content-center mt-4 text-end">
+                        <h2>Tags:</h2>
+                        <ul>
+                        {{#each post.tags as |tag|}}
+                        <li>
+                            <h5 class="col-3 text-end w-100">{{tag.tag_title}}</h5>
+                        </li>
+                        {{/each}}
 
-   {{#if loggedIn}}
-   <script src="/javascript/add-comment.js"></script>
-   <script src="/javascript/vote.js"></script>
-   {{/if}}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="mb-3">
+                {{#if loggedIn}}
+                <textarea class="form-control" name="comment" id="" rows="3"></textarea>
+                <button class="btn btn-primary mt-3" id="addComment">Add comment</button>
+                {{/if}}
+            </section>
+            <section class="comment-container">
+                {{> comments post.comments}}
+            </section>
+        </div>
 
-
-
+{{#if loggedIn}}
+<script src="/javascript/add-comment.js"></script>
+<script src="/javascript/vote.js"></script>
+{{/if}}
