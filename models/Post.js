@@ -18,7 +18,7 @@ Post.init(
             },
         },
         description: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(2000),
             allowNull: false,
             validate: {
                 len: [1],

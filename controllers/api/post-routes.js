@@ -104,6 +104,26 @@ router.post("/", isSignedIn, (req, res) => {
             console.log(err);
         });
 });
+router.put("/votes", isSignedIn, (req, res) => {
+    Post.vote(
+        {
+            ...req.body,
+            user_id: req.session.user_id,
+        },
+        {
+            Votes,
+            Comment,
+            User,
+        }
+    )
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json(err);
+        });
+});
 router.put("/:id", (req, res) => {
     // update post data
     Post.update(req.body, {
