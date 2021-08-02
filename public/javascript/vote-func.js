@@ -1,4 +1,4 @@
-$('#thumbs-up-post').on('click', voteHandler);
+
 
 function onHover()
 {

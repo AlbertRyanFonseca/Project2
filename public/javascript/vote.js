@@ -21,4 +21,4 @@ async function voteHandler(event) {
         }
 }
 
-
+$('#thumbs-up-post').on('click', voteHandler);
