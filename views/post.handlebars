@@ -8,11 +8,11 @@
                 </div>
             </section>
 
-            <section class="row mt-3">
+            <section class="row mt-3 justify-content-center">
                 {{!-- description --}}
-                <div class="col-6">{{post.description}}</div>
+                <div class="col-12 col-md-6">{{post.description}}</div>
                 {{!-- tags --}}
-                <div class="col-3 row justify-content-center align-items-center">
+                <div class="col-6 col-md-3 row justify-content-center align-items-center">
                     <div class="col-7 align-items-center justify-content-center mt-4 text-end">
                         <h2>Tags:</h2>
                         <ul>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 {{!-- difficulty level --}}
-                <div class="col-3 row justify-content-center align-items-center">
+                <div class="col-6 col-md-3 row justify-content-center align-items-center">
                     <div class="col-7 align-items-center justify-content-center mt-4 text-end">
                         <h2>Difficulty:</h2>
                             <h5 class="col-3 text-end w-100">{{post.difficulty.difficulty}}</h5>
@@ -37,8 +37,8 @@
                 {{#if loggedIn}}
                 <textarea class="form-control" name="comment" id="" rows="3"></textarea>
                 <div class="row">
-                    <div class="upvote-container row col-4 align-items-center">
-                        <div class="thumb-icon col-2">
+                    <div class="upvote-container row col-6 col-md-4 align-items-center">
+                        <div class="thumb-icon col-4 col-md-2">
                             <img
                                 src="/icons/thumbs-up-normal.png"
                                 alt="thumbs-up-icon"

@@ -54,7 +54,6 @@ body {
 img {
   max-width: 100%;
   height: auto;
-  /* display: block; */
 }
 
 form {
@@ -72,7 +71,7 @@ form {
 }
 
 .post-title {
-  font-size: 5rem;
+  font-size: 13vw;
 }
 .difficulty-label {
   font-weight: 500;
@@ -114,16 +113,9 @@ form {
 
 /* Filter Styling */
 
-.filter-dropdowns {
-  /* width:20%; */
-  margin: 0 10px 0 10px;
-}
 
-.filter-dropdown-container {
-  display: flex;
-  align-items: center;
-  width: 50%;
-  justify-content: center;
+.filter-dropdown-container select{
+  font-size: 14px
 }
 .form-check-label {
   padding: 0 10px 0 0 !important;
@@ -457,6 +449,10 @@ form {
   border-radius: 1.5625rem;
   outline: none;
   cursor: pointer;
+}
+
+.img-container {
+  margin-top: 4rem;
 }
 
 /* Modal Cards */
