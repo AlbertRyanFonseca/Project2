@@ -63,6 +63,7 @@ router.get("/", (req, res) => {
             res.status(500).json(err);
         });
 });
+
 router.post("/", isSignedIn, (req, res) => {
     // expects
     //       "title": "This is a test Title"
@@ -100,6 +101,7 @@ router.post("/", isSignedIn, (req, res) => {
             console.log(err);
         });
 });
+
 router.put("/votes", isSignedIn, (req, res) => {
     Post.vote(
         {

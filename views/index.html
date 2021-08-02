@@ -12,6 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
     <title>Socially Fit</title>
 </head>
 
@@ -38,39 +40,16 @@
 
 <body>
 
-    <section class="register-container">
-        <form class="register-form" action="">
-            <div class="form-container">
-                <h1 class="form-title">Register</h1>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Find Your Fit.</h1>
 
-                <div class="form-input">
-                    <input class="input-field" type="text" id="email-register" />
-                    <span class="input-span"></span>
-                    <label class="form-label" for="email-register">Email:</label>
-                </div>
+            <h3 class="hero-sub">Take your workout to the world.</h3>
 
-                <div class="form-input">
-                    <input class="input-field" type="text" id="username-register">
-                    <span class="input-span"></span>
-                    <label class="form-label" for="username-register">Username:</label>
-                </div>
-
-                <div class="form-input">
-                    <input class="input-field" type="password" id="password-register" />
-                    <span class="input-span"></span>
-                    <label class="form-label" for="password-register">Password:</label>
-                </div>
-
-                <div class="form-button">
-                    <button class="form-submit" type="submit" id="register-btn">Sign Up</button>
-                </div>
-
-                <div class="form-signin">
-                    <a href="/login" class="signin-link">Already a member? Sign in!</a>
-                </div>
-            </div>
-        </form>
+            <a class="hero-link" href="/exercises"><button class="hero-button" type="button">View Exercises</button></a>
+        </div>
     </section>
+
 
     <!-- <div class="container">
         <section class="hero row">
@@ -93,7 +72,6 @@
         </section>
         <section class="comment-container"></section>
     </div> -->
-
     <script src="../public/javascript/homepage.js"></script>
     <script src="../public/javascript/register.js"></script>
     <script src="../public/javascript/login.js"></script>

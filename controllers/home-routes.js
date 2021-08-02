@@ -210,6 +210,10 @@ router.get("/exercises", (req, res) => {
                 model: Picture,
                 attributes: ["image_url"],
             },
+            {
+                model: Difficulty,
+                attributes: ["difficulty"],
+            },
         ],
     })
         .then((dbPostData) => {
@@ -278,6 +282,10 @@ router.get("/post/:id", (req, res) => {
                 model: Tags,
                 attributes: [["title", "tag_title"]],
                 
+            },
+            {
+                model: Difficulty,
+                attributes: ["difficulty"],
             },
 
         ],
