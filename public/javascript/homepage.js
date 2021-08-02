@@ -49,4 +49,4 @@ sr.reveal('.hero-sub', { delay: 200, origin: 'right' });
 sr.reveal('.hero-button', { delay: 400, origin: 'bottom' });
 
 // Exercise-info
-sr.reveal('.card', { delay: 150 });
+sr.reveal('.card', { interval: 200 });
