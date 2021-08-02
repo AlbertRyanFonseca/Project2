@@ -1,32 +1,44 @@
-<section class="d-flex p-4 filter-bar-top">
+<section class="container p-4 filter-bar-top">
 
-    <div class="filter-dropdown-container">
+    <div class="filter-dropdown-container row">
         {{! <label for="difficulty">Choose exercise difficulty:</label> }}
-        <select
-            class="form-select filter-dropdowns"
-            name="difficulty"
-            id="exerciseDifficultyFilter"
-        >
-            <option selected>Filter by difficulty</option>
-            <option value="3">Beginner</option>
-            <option value="2">Intermediate</option>
-            <option value="1">Expert</option>
-        </select>
+        <div class="col-6 col-md-2">
+            <select
+                class="form-select filter-dropdowns"
+                name="difficulty"
+                id="exerciseDifficultyFilter"
+            >
+                <option selected>Filter by difficulty</option>
+                <option value="3">Beginner</option>
+                <option value="2">Intermediate</option>
+                <option value="1">Expert</option>
+            </select>
+        </div>
         {{! <label for="type">Choose exercise type:</label> }}
-        <select
-            class="form-select filter-dropdowns"
-            name="type"
-            id="exerciseTypeFilter"
-        >
-            <option selected>Filter by Exercise Type</option>
-            <option value="1">Cardio</option>
-            <option value="2">Core</option>
-            <option value="3">Strength</option>
-            <option value="4">Crossfit</option>
-        </select>
+        <div class="col-6 col-md-2">
+            <select
+                class="form-select filter-dropdowns"
+                name="type"
+                id="exerciseTypeFilter"
+            >
+                <option selected>Filter by Exercise Type</option>
+                <option value="1">Cardio</option>
+                <option value="2">Core</option>
+                <option value="3">Strength</option>
+                <option value="4">Crossfit</option>
+            </select>
+        </div>
+        <div class="row justify-content-center align-items-center col-12 mt-3">
+            <button
+                type="button"
+                class="btn btn btn-primary col-6"
+                id="filterBtn"
+            >Filter</button>
+        </div>
+        
     </div>
 
-    {{!-- <div id="checkbox-btn-container">
+    {{! <div id="checkbox-btn-container">
         <div id="tags">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" id="1" type="checkbox" name="tags1" />
@@ -46,11 +58,6 @@
                 <label class="form-check-label" for="tags4"> Quick</label>
             </div>
         </div>
-    </div> --}}
-        <button
-            type="button"
-            class="btn btn btn-primary"
-            id="filterBtn"
-        >Filter</button>
+    </div> }}
 
 </section>

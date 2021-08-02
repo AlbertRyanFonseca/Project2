@@ -113,15 +113,9 @@ form {
 
 /* Filter Styling */
 
-.filter-dropdowns {
-  margin: 0 10px 0 10px;
-}
 
-.filter-dropdown-container {
-  display: flex;
-  align-items: center;
-  width: 50%;
-  justify-content: center;
+.filter-dropdown-container select{
+  font-size: 14px
 }
 .form-check-label {
   padding: 0 10px 0 0 !important;
