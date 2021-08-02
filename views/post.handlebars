@@ -9,8 +9,10 @@
             </section>
 
             <section class="row mt-3">
-                <div class="col-8">{{post.description}}</div>
-                <div class="col-4 row justify-content-center align-items-center">
+                {{!-- description --}}
+                <div class="col-6">{{post.description}}</div>
+                {{!-- tags --}}
+                <div class="col-3 row justify-content-center align-items-center">
                     <div class="col-7 align-items-center justify-content-center mt-4 text-end">
                         <h2>Tags:</h2>
                         <ul>
@@ -21,6 +23,13 @@
                         {{/each}}
 
                         </ul>
+                    </div>
+                </div>
+                {{!-- difficulty level --}}
+                <div class="col-3 row justify-content-center align-items-center">
+                    <div class="col-7 align-items-center justify-content-center mt-4 text-end">
+                        <h2>Difficulty:</h2>
+                            <h5 class="col-3 text-end w-100">{{post.difficulty.difficulty}}</h5>
                     </div>
                 </div>
             </section>

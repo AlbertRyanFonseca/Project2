@@ -70,6 +70,9 @@ form {
 .post-title {
   font-size:5rem
 }
+.difficulty-label {
+  font-weight: 500;
+}
 
 @media screen and (max-width: 767px) {
   .nav-menu {
