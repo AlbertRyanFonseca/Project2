@@ -71,7 +71,7 @@ form {
 }
 
 .post-title {
-  font-size: 13vw;
+  font-size: 5rem;
 }
 .difficulty-label {
   font-weight: 500;
@@ -79,6 +79,7 @@ form {
 
 @media screen and (max-width: 767px) {
   .nav-menu {
+
     position: fixed;
     top: 3rem;
     right: -85%;
@@ -88,6 +89,9 @@ form {
     background-color: rgba(255, 255, 255, 0.5);
     transition: 0.5s;
     backdrop-filter: blur(0.7em);
+  }
+  .post-title {
+    font-size: 13vw;
   }
 }
 
@@ -121,7 +125,7 @@ form {
   padding: 0 10px 0 0 !important;
 }
 .filter-bar-top {
-  background-color: rgb(189, 189, 189);
+  background-color: rgb(214, 202, 202);
   width: 100%;
 }
 #checkbox-btn-container {

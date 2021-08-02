@@ -46,4 +46,4 @@ https://github.com/AlbertRyanFonseca/Project2
 
 ## GIF
 
-![](./public/assets/images/note-taker.gif)
+![](./public/images/socially-fit.gif)
