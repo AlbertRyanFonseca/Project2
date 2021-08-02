@@ -30,7 +30,7 @@ async function newExerciseHandler(event) {
     });
 
     if (response.ok) {
-        document.location.reload();
+        document.location.replace("/exercises");
     } else {
         alert(response.statusText);
     }

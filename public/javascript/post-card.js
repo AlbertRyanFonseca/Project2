@@ -4,4 +4,4 @@ function postPageHandler (e) {
     document.location.replace(`/post/${postId}`)
 }
 
-$(".postId").on("click", ".card", postPageHandler);
+$(".card").on("click", postPageHandler);
