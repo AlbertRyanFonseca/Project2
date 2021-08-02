@@ -54,7 +54,6 @@ body {
 img {
   max-width: 100%;
   height: auto;
-  /* display: block; */
 }
 
 form {
@@ -115,7 +114,6 @@ form {
 /* Filter Styling */
 
 .filter-dropdowns {
-  /* width:20%; */
   margin: 0 10px 0 10px;
 }
 
@@ -457,6 +455,10 @@ form {
   border-radius: 1.5625rem;
   outline: none;
   cursor: pointer;
+}
+
+.img-container {
+  margin-top: 4rem;
 }
 
 /* Modal Cards */
