@@ -18,11 +18,11 @@ p {
   margin: 5rem;
 }
 header {
-  position: fixed;
+  position: sticky;
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 10;
 }
 
 nav {

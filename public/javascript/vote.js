@@ -21,15 +21,4 @@ async function voteHandler(event) {
         }
 }
 
-$('#thumbs-up-post').on('click', voteHandler);
-
-function onHover()
-{
-    $("#thumbs-up-post").attr('src', '/icons/thumbs-up-activated.png');
-}
-
-function offHover()
-{
-    $("#thumbs-up-post").attr('src', '/icons/thumbs-up-normal.png');
-}
 
