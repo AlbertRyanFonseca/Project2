@@ -11,7 +11,7 @@ const helpers = require('./utils/helpers');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
-  secret: process.env.SESS_SECRET,
+  secret: 'super super secret',
   cookie: {},
   resave: false,
   saveUninitialized: true,
