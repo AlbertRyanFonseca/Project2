@@ -38,7 +38,41 @@
 
 <body>
 
-    <div class="container">
+    <section class="register-container">
+        <form class="register-form" action="">
+            <div class="form-container">
+                <h1 class="form-title">Register</h1>
+
+                <div class="form-input">
+                    <input class="input-field" type="text" id="email-register" />
+                    <span class="input-span"></span>
+                    <label class="form-label" for="email-register">Email:</label>
+                </div>
+
+                <div class="form-input">
+                    <input class="input-field" type="text" id="username-register">
+                    <span class="input-span"></span>
+                    <label class="form-label" for="username-register">Username:</label>
+                </div>
+
+                <div class="form-input">
+                    <input class="input-field" type="password" id="password-register" />
+                    <span class="input-span"></span>
+                    <label class="form-label" for="password-register">Password:</label>
+                </div>
+
+                <div class="form-button">
+                    <button class="form-submit" type="submit" id="register-btn">Sign Up</button>
+                </div>
+
+                <div class="form-signin">
+                    <a href="/login" class="signin-link">Already a member? Sign in!</a>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- <div class="container">
         <section class="hero row">
             <img src="#" alt="">
             <div id="fav-icon-container">
@@ -58,35 +92,7 @@
             <div class="tags-container col-4"></div>
         </section>
         <section class="comment-container"></section>
-    </div>
-
-    <!-- <section class="login-container">
-        <form class="login-form" action="">
-            <div class="form-container">
-                <h1 class="form-title">Login</h1>
-
-                <div class="form-input">
-                    <input class="input-field" type="text" id="email-login" />
-                    <span class="input-span"></span>
-                    <label class="form-label" for="email-login">Email:</label>
-                </div>
-
-                <div class="form-input">
-                    <input class="input-field" type="password" id="password-login" />
-                    <span class="input-span"></span>
-                    <label class="form-label" for="password-login">Password:</label>
-                </div>
-
-                <div class="form-button">
-                    <button class="form-submit" type="submit" id="login-btn">Login</button>
-                </div>
-
-                <div class="form-signup">
-                    <a class="register-link" href="/register">Don't have an account? Sign up today!</a>
-                </div>
-            </div>
-        </form>
-    </section> -->
+    </div> -->
 
     <script src="../public/javascript/homepage.js"></script>
     <script src="../public/javascript/register.js"></script>
