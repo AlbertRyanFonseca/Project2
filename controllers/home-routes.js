@@ -94,77 +94,149 @@ router.get("/profile", isSignedIn, (req, res) => {
         });
 });
 router.get("/filtered-exercises", (req, res) => {
-    Post.findAll({
-        where: {
-            [Op.or]: [
-                {
-                    difficulty_id: {
-                        [Op.eq]: [req.query.difficulty],
+    if (req.query.difficulty && req.query.type) {
+        Post.findAll({
+            where: {
+                [Op.and]: [
+                    {
+                        difficulty_id: {
+                            [Op.eq]: [req.query.difficulty],
+                        },
                     },
-                },
-                {
-                    type_id: {
-                        [Op.eq]: [req.query.type],
+                    {
+                        type_id: {
+                            [Op.eq]: [req.query.type],
+                        },
                     },
-                },
-            ],
-        },
-        include: [
-            {
-                model: Comment,
-                attributes: [
-                    "id",
-                    "comment_text",
-                    "post_id",
-                    "user_id",
-                    "created_at",
                 ],
-                include: {
+            },
+            include: [
+                {
+                    model: Comment,
+                    attributes: [
+                        "id",
+                        "comment_text",
+                        "post_id",
+                        "user_id",
+                        "created_at",
+                    ],
+                    include: {
+                        model: User,
+                        attributes: ["username"],
+                    },
+                },
+                {
                     model: User,
                     attributes: ["username"],
                 },
-            },
-            {
-                model: User,
-                attributes: ["username"],
-            },
-            {
-                model: Picture,
-                attributes: ["image_url"],
-            },
-            {
-                model: Tags,
-                attributes: ["title"],
-                through: PostTags,
-            },
-            {
-                model: Difficulty,
-                attributes: ["difficulty"],
-            },
-        ],
-        attributes: [
-            "id",
-            "title",
-            "created_at",
-            "description",
-            [
-                sequelize.literal(
-                    "(SELECT COUNT(*) FROM votes WHERE post.id = votes.post_id)"
-                ),
-                "vote_count",
+                {
+                    model: Picture,
+                    attributes: ["image_url"],
+                },
+                {
+                    model: Tags,
+                    attributes: ["title"],
+                    through: PostTags,
+                },
+                {
+                    model: Difficulty,
+                    attributes: ["difficulty"],
+                },
             ],
-        ],
-        
-    }).then((dbPostData) => {
-        const posts = dbPostData.map((post) => {
-            post.dataValues.loggedIn = req.session.loggedIn;
-            return post.get({ plain: true });
+            attributes: [
+                "id",
+                "title",
+                "created_at",
+                "description",
+                [
+                    sequelize.literal(
+                        "(SELECT COUNT(*) FROM votes WHERE post.id = votes.post_id)"
+                    ),
+                    "vote_count",
+                ],
+            ],
+        }).then((dbPostData) => {
+            const posts = dbPostData.map((post) => {
+                post.dataValues.loggedIn = req.session.loggedIn;
+                return post.get({ plain: true });
+            });
+            posts;
+            res.render("exercises", {
+                posts,
+            });
         });
-        (posts);
-        res.render("exercises", {
-            posts,
+    } else  {
+        Post.findAll({
+            where: {
+                [Op.or]: [
+                    {
+                        difficulty_id: {
+                            [Op.eq]: [req.query.difficulty],
+                        },
+                    },
+                    {
+                        type_id: {
+                            [Op.eq]: [req.query.type],
+                        },
+                    },
+                ],
+            },
+            include: [
+                {
+                    model: Comment,
+                    attributes: [
+                        "id",
+                        "comment_text",
+                        "post_id",
+                        "user_id",
+                        "created_at",
+                    ],
+                    include: {
+                        model: User,
+                        attributes: ["username"],
+                    },
+                },
+                {
+                    model: User,
+                    attributes: ["username"],
+                },
+                {
+                    model: Picture,
+                    attributes: ["image_url"],
+                },
+                {
+                    model: Tags,
+                    attributes: ["title"],
+                    through: PostTags,
+                },
+                {
+                    model: Difficulty,
+                    attributes: ["difficulty"],
+                },
+            ],
+            attributes: [
+                "id",
+                "title",
+                "created_at",
+                "description",
+                [
+                    sequelize.literal(
+                        "(SELECT COUNT(*) FROM votes WHERE post.id = votes.post_id)"
+                    ),
+                    "vote_count",
+                ],
+            ],
+        }).then((dbPostData) => {
+            const posts = dbPostData.map((post) => {
+                post.dataValues.loggedIn = req.session.loggedIn;
+                return post.get({ plain: true });
+            });
+            posts;
+            res.render("exercises", {
+                posts,
+            });
         });
-    });
+    }
 });
 
 router.get("/exercises", (req, res) => {
@@ -234,7 +306,7 @@ router.get("/exercises", (req, res) => {
 
 router.get("/post/:id", (req, res) => {
     Post.findOne({
-        where: { 
+        where: {
             id: req.params.id,
         },
         attributes: [
@@ -281,13 +353,11 @@ router.get("/post/:id", (req, res) => {
             {
                 model: Tags,
                 attributes: [["title", "tag_title"]],
-                
             },
             {
                 model: Difficulty,
                 attributes: ["difficulty"],
             },
-
         ],
     })
         .then((dbPostData) => {
@@ -295,15 +365,13 @@ router.get("/post/:id", (req, res) => {
             res.render("post", {
                 post,
                 loggedIn: req.session.loggedIn,
-            })
+            });
         })
-            .catch((err) => {
-                console.log(err);
-                res.status(500).json(err);
-            })
-        })
-    
-
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
 
 router.get("/create", isSignedIn, (req, res) => {
     Picture.findAll({
