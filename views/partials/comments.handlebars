@@ -1,0 +1,15 @@
+<div class="comments mt-3 pb-3">
+    {{#each this}}
+    <div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <h6 class="mb-1 text-Success">{{user.username}}</h6>
+    </div>
+    <p class="mb-1">{{comment_text}}</p>
+    <small class="text-secondary"> on {{format_date created_at}}</small>
+  </a>
+  </div>
+    
+        {{/each}}
+    
+</div>
