@@ -20,18 +20,23 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         ></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,700;1,500&display=swap"
+            rel="stylesheet"
+        />
 
         <title>Socially Fit</title>
     </head>
 
+    <body>
         <header>
-
             <nav>
                 <div>
                     <h1><a class="nav-logo" href="/">Socially Fit</a></h1>
                 </div>
                 {{#if loggedIn}}
-                
                     <div class="nav-menu" id="nav-menu">
                         <ul class="nav-list">
                             <li class="nav-item"><a
@@ -46,7 +51,10 @@
                                     class="nav-link btn btn-link"
                                     id="logout"
                                 >Logout</button></li>
-                            <li class="nav-item"><a href="/create" class="nav-link">Create Exercise</a></li>
+                            <li class="nav-item"><a
+                                    href="/create"
+                                    class="nav-link"
+                                >Create Exercise</a></li>
                         </ul>
                     </div>
                 {{else}}
@@ -67,9 +75,7 @@
                     <i class="bx bx-menu"></i>
                 </div>
             </nav>
-
         </header>
-    <body>
 
         <main>{{{body}}}</main>
         <script src="https://unpkg.com/scrollreveal"></script>

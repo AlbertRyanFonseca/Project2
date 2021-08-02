@@ -113,7 +113,6 @@ router.put("/votes", isSignedIn, (req, res) => {
         }
     )
         .then((result) => {
-            console.log("You got here!");
             res.json(result);
         })
         .catch((err) => {
