@@ -18,7 +18,7 @@ This app was built using JS, Node, express, handlebars, sequelize.
 
 ## Installation Instructions
 
-first run npm i top install dependencies, then run source db/schema.sql; in mysql shell. npm run seeds will seed the database, and npm start will start the server.
+First run npm i to install dependencies, then run source db/schema.sql; in the mysql shell. npm run seeds will seed the database, and npm start will start the server.
 
 ## How to contribute
 
